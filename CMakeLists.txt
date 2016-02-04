@@ -22,26 +22,22 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/source/falaise)
 
 # - Headers:
 list(APPEND FalaiseEventExporterPlugin_HEADERS
-  source/falaise/snemo/exports/event_exporter.h
-  # source/falaise/snemo/exports/export_ascii_event.h
-  source/falaise/snemo/exports/export_event.h
-  source/falaise/snemo/exports/export_root_event.h
-  source/falaise/snemo/exports/loggable_support.h
-  source/falaise/snemo/exports/root_utils.h
-  source/falaise/snemo/processing/export_root_module.h
-  # source/falaise/snemo/processing/export_ascii_module.h
+  source/falaise/snemo/exports/topology_exporter.h
+  source/falaise/snemo/exports/base_export_data_bank.h
+  source/falaise/snemo/exports/base_data_bank_exporter.h
+  source/falaise/snemo/exports/export_topology.h
+  source/falaise/snemo/exports/export_root_topology.h
+  source/falaise/snemo/processing/root_export_module.h
   )
 
 # - Sources:
 list(APPEND FalaiseEventExporterPlugin_SOURCES
-  source/falaise/snemo/exports/event_exporter.cc
-  # source/falaise/snemo/exports/export_ascii_event.cc
-  source/falaise/snemo/exports/export_event.cc
-  source/falaise/snemo/exports/export_root_event.cc
-  source/falaise/snemo/exports/loggable_support.cc
-  source/falaise/snemo/exports/root_utils.cc
-  source/falaise/snemo/processing/export_root_module.cc
-  # source/falaise/snemo/processing/export_ascii_module.cc
+  source/falaise/snemo/exports/topology_exporter.cc
+  source/falaise/snemo/exports/base_export_data_bank.cc
+  source/falaise/snemo/exports/base_data_bank_exporter.cc
+  source/falaise/snemo/exports/export_topology.cc
+  source/falaise/snemo/exports/export_root_topology.cc
+  source/falaise/snemo/processing/root_export_module.cc
   )
 
 ###########################################################################################

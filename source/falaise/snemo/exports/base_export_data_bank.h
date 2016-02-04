@@ -4,7 +4,7 @@
  * Author (s) :
  Francois Mauger <mauger@lpccaen.in2p3.fr>
  Xavier Garrido  <garrido@lal.in2p3.fr>
- Steven Calvez   <steven@lal.in2p3.fr>
+ Steven Calvez   <calvez@lal.in2p3.fr>
  * Creation date: 2016-02-03
  * Last modified: 2016-02-03
  *
@@ -84,14 +84,15 @@ namespace snemo {
       virtual void clear_data () = 0;
 
       virtual void implement_introspection () = 0;
+
       struct introspection_activator
       {
         introspection_activator ();
       };
 
       virtual void print (std::ostream & out_ = std::clog,
-                  const std::string & title_ = "",
-                  const std::string & indent_ = "") const = 0;
+                          const std::string & title_ = "",
+                          const std::string & indent_ = "") const = 0;
     };
 
     template<class Type>
