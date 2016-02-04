@@ -42,7 +42,7 @@ namespace snemo {
 
       class export_topology;
 
-      struct topology_exporter
+      struct topology_exporter : base_data_bank_exporter
       {
       public:
         enum export_bit_type

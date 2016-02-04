@@ -29,29 +29,27 @@ namespace snemo {
 
       topology_exporter::topology_exporter ()
       {
-        base_data_bank_exporter();
         return;
       }
 
       topology_exporter::~topology_exporter ()
-        : ~base_data_bank_exporter()
       {
         return;
       }
 
       void topology_exporter::initialize (const datatools::properties & setup_)
       {
-        base_data_bank_exporter::initialize(setup_);
+        this->base_data_bank_exporter::initialize(setup_);
 
         if (setup_.has_flag ("export.topology_2e"))
           {
-            set_exported (se::topology_exporter::EXPORT_TOPOLOGY_2E);
+            this->base_data_bank_exporter::set_exported (se::topology_exporter::EXPORT_TOPOLOGY_2E);
           }
 
         // If no export directive is given, export all data banks :
         if (_export_flags_ == se::event_exporter::NO_EXPORT)
           {
-            set_exported (se::event_exporter::EXPORT_ALL);
+            this->base_data_bank_exporter::set_exported (se::event_exporter::EXPORT_ALL);
           }
 
         // WIP : Maybe there should be flags specific to each data bank
