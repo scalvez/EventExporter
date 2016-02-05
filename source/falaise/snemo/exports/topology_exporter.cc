@@ -47,9 +47,9 @@ namespace snemo {
           }
 
         // If no export directive is given, export all data banks :
-        if (_export_flags_ == se::event_exporter::NO_EXPORT)
+        if (base_data_bank_exporter::_export_flags_ == se::topology_exporter::NO_EXPORT)
           {
-            this->base_data_bank_exporter::set_exported (se::event_exporter::EXPORT_ALL);
+            this->base_data_bank_exporter::set_exported (se::topology_exporter::EXPORT_ALL);
           }
 
         // WIP : Maybe there should be flags specific to each data bank
@@ -61,7 +61,7 @@ namespace snemo {
       {
         base_data_bank_exporter::_set_default_bank_labels();
         // Default bank names for "EH", "SD", "CD", "TCD", "TTD" :
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::TOPOLOGY_DATA_LABEL]    = sdm::data_info::default_topology_data_label();
+        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()]    = sdm::data_info::default_topology_data_label();
         return;
       }
 
@@ -127,7 +127,7 @@ namespace snemo {
       int topology_exporter::_export_topology_2e (const datatools::things & er_,
                                                   se::export_topology & et_)
       {
-        const std::string & td_label = base_data_bank_exporter::_bank_labels_[sdm::data_info::TOPOLOGY_DATA_LABEL];
+        const std::string & td_label = base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
         if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data))
           {
             DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -139,12 +139,12 @@ namespace snemo {
         const snemo::datamodel::topology_2e_pattern & a_2e_pattern
           = dynamic_cast<const snemo::datamodel::topology_2e_pattern &>(TD.get_pattern());
 
-        et_.topology_2e.electron_minimal_energy = a_2e_pattern.get_electron_minimal_energy();
-        et_.topology_2e.electron_maximal_energy = a_2e_pattern.get_electron_maximal_energy();
+        et_.grab_2e_topology().electron_minimal_energy = a_2e_pattern.get_electron_minimal_energy();
+        et_.grab_2e_topology().electron_maximal_energy = a_2e_pattern.get_electron_maximal_energy();
 
-        et_.topology_2e.electrons_internal_probability = a_2e_pattern.get_electrons_internal_probability();
-        et_.topology_2e.electrons_external_probability = a_2e_pattern.get_electrons_external_probability();
-        et_.topology_2e.electrons_angle = a_2e_pattern.get_electrons_angle();
+        et_.grab_2e_topology().electrons_internal_probability = a_2e_pattern.get_electrons_internal_probability();
+        et_.grab_2e_topology().electrons_external_probability = a_2e_pattern.get_electrons_external_probability();
+        et_.grab_2e_topology().electrons_angle = a_2e_pattern.get_electrons_angle();
 
         return 0;
       }

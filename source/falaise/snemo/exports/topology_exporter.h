@@ -28,6 +28,7 @@
 
 #include <datatools/bit_mask.h>
 #include <falaise/snemo/datamodels/data_model.h>
+#include <falaise/snemo/exports/base_data_bank_exporter.h>
 
 namespace geomtools {
   class manager;

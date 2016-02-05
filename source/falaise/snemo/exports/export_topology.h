@@ -77,6 +77,8 @@ namespace snemo {
 
       const topology_2e & get_2e_topology () const;
 
+      topology_2e & grab_2e_topology ();
+
       struct introspection_activator
       {
         introspection_activator ();
@@ -85,7 +87,7 @@ namespace snemo {
     public:
 
       // Topology 2e data :
-      topology_2e                     _topology_2e_;
+      snemo::exports::topology_2e _topology_2e_;
 
     };
 

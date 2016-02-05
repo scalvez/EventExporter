@@ -23,7 +23,6 @@ namespace snemo {
     base_export_data_bank::base_export_data_bank ()
     {
       introspection_activator IA;
-      reset ();
       return;
     }
 
@@ -40,6 +39,12 @@ namespace snemo {
           implement_introspection ();
           activated = true;
         }
+      return;
+    }
+
+    void base_export_data_bank::implement_introspection ()
+    {
+      _implement_introspection();
       return;
     }
 

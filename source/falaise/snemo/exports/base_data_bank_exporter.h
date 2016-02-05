@@ -28,6 +28,7 @@
 
 #include <datatools/bit_mask.h>
 #include <falaise/snemo/datamodels/data_model.h>
+#include <falaise/snemo/exports/export_topology.h>
 
 namespace geomtools {
   class manager;
@@ -98,13 +99,14 @@ namespace snemo {
 
         const std::map<std::string, std::string> & get_bank_labels () const;
 
+        uint32_t _export_flags_;
+
+        std::map<std::string, std::string> _bank_labels_; //!< The labels of the bank in the event records
       private:
 
         bool _initialized_; //!< Initialization flag
         const geomtools::manager * _geom_manager_; //!< The geometry manager
 
-        std::map<std::string, std::string> _bank_labels_; //!< The labels of the bank in the event records
-        uint32_t _export_flags_;
 
       };
 

@@ -83,7 +83,7 @@ namespace snemo {
       virtual void reset () = 0;
       virtual void clear_data () = 0;
 
-      virtual void implement_introspection () = 0;
+      void implement_introspection ();
 
       struct introspection_activator
       {
@@ -93,6 +93,10 @@ namespace snemo {
       virtual void print (std::ostream & out_ = std::clog,
                           const std::string & title_ = "",
                           const std::string & indent_ = "") const = 0;
+
+    protected :
+      virtual void _implement_introspection () = 0;
+
     };
 
     template<class Type>
