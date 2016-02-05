@@ -85,11 +85,6 @@ namespace snemo {
 
       void implement_introspection ();
 
-      struct introspection_activator
-      {
-        introspection_activator ();
-      };
-
       virtual void print (std::ostream & out_ = std::clog,
                           const std::string & title_ = "",
                           const std::string & indent_ = "") const = 0;

@@ -22,23 +22,17 @@ namespace snemo {
 
     base_export_data_bank::base_export_data_bank ()
     {
-      introspection_activator IA;
-      return;
-    }
-
-    base_export_data_bank::~base_export_data_bank ()
-    {
-      return;
-    }
-
-    base_export_data_bank::introspection_activator::introspection_activator ()
-    {
       static bool activated = false;
       if (! activated)
         {
           implement_introspection ();
           activated = true;
         }
+      return;
+    }
+
+    base_export_data_bank::~base_export_data_bank ()
+    {
       return;
     }
 

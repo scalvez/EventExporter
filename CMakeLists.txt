@@ -27,6 +27,8 @@ list(APPEND FalaiseEventExporterPlugin_HEADERS
   source/falaise/snemo/exports/base_data_bank_exporter.h
   source/falaise/snemo/exports/export_topology.h
   source/falaise/snemo/exports/export_root_topology.h
+  source/falaise/snemo/exports/root_utils.h
+  source/falaise/snemo/exports/loggable_support.h
   source/falaise/snemo/processing/root_export_module.h
   )
 
@@ -37,6 +39,8 @@ list(APPEND FalaiseEventExporterPlugin_SOURCES
   source/falaise/snemo/exports/base_data_bank_exporter.cc
   source/falaise/snemo/exports/export_topology.cc
   source/falaise/snemo/exports/export_root_topology.cc
+  source/falaise/snemo/exports/root_utils.h
+  source/falaise/snemo/exports/loggable_support.h
   source/falaise/snemo/processing/root_export_module.cc
   )
 
@@ -47,7 +51,7 @@ add_library(Falaise_EventExporter SHARED
   ${FalaiseEventExporterPlugin_HEADERS}
   ${FalaiseEventExporterPlugin_SOURCES})
 
-target_link_libraries(Falaise_EventExporter Falaise)
+target_link_libraries(Falaise_EventExporter Falaise Falaise_ParticleIdentification)
 
 # Apple linker requires dynamic lookup of symbols, so we
 # add link flags on this platform

@@ -2,7 +2,7 @@
 /* export_topology.cc */
 
 #include <falaise/snemo/exports/export_topology.h>
-#include <falaise/snemo/exports/event_exporter.h>
+#include <falaise/snemo/exports/topology_exporter.h>
 
 #include <sstream>
 #include <limits>
@@ -41,9 +41,7 @@ namespace snemo {
 
       export_topology::export_topology ()
       {
-        introspection_activator IA;
         reset ();
-        topology_2e.reserve (5);
         return;
       }
 
@@ -60,7 +58,7 @@ namespace snemo {
 
       void export_topology::clear_data ()
       {
-        topology_2e.reset (); // or clear ?
+       _topology_2e_.reset ();
         return;
       }
 
@@ -79,24 +77,13 @@ namespace snemo {
         return;
       }
 
-      const true_vertex_type &
+      const topology_2e &
       export_topology::get_2e_topology () const
       {
         return _topology_2e_;
       }
 
-      export_topology::introspection_activator::introspection_activator ()
-      {
-        static bool activated = false;
-        if (! activated)
-          {
-            implement_introspection ();
-            activated = true;
-          }
-        return;
-      }
-
-      void export_topology::implement_introspection ()
+         void export_topology::_implement_introspection ()
       {
         std::clog << "NOTICE: export_topology::implement_introspection: Entering...\n";
 
@@ -112,9 +99,9 @@ namespace snemo {
             .tag ("unit", "keV")
             .property ("electrons_internal_probability", &topology_2e::electrons_internal_probability)
             .tag ("ctype", "double")
-            .property ("electrons_external_probability", &topology_2e::electrons_ternal_probability)
+            .property ("electrons_external_probability", &topology_2e::electrons_external_probability)
             .tag ("ctype", "double")
-            .property ("electrons_external_probability", &topology_2e::electrons_ternal_probability)
+            .property ("electrons_angle", &topology_2e::electrons_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
             ;
@@ -124,7 +111,7 @@ namespace snemo {
           camp::Class::declare< export_topology >("export_topology")
             .tag ("version", 0)
             .constructor0()
-            // Event header :
+            // Topology 2e :
             .property ("topology_2e", &export_topology::_topology_2e_)
 
             // more...

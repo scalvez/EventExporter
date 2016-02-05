@@ -57,13 +57,13 @@ namespace snemo {
         return;
       }
 
-      void base_data_bank_exporter::_set_default_bank_labels ()
-      {
-        base_data_bank_exporter::_set_default_bank_labels();
-        // Default bank names for "EH", "SD", "CD", "TCD", "TTD" :
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()]    = sdm::data_info::default_topology_data_label();
-        return;
-      }
+      // void base_data_bank_exporter::_set_default_bank_labels ()
+      // {
+      //   base_data_bank_exporter::_set_default_bank_labels();
+      //   // Default bank names for "EH", "SD", "CD", "TCD", "TTD" :
+      //   base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()]    = sdm::data_info::default_topology_data_label();
+      //   return;
+      // }
 
       //static
       std::string topology_exporter::get_export_bit_label (unsigned int bit_)

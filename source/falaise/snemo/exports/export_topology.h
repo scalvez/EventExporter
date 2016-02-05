@@ -69,7 +69,7 @@ namespace snemo {
       virtual void reset ();
       virtual void clear_data ();
 
-      virtual void implement_introspection ();
+      virtual void _implement_introspection ();
 
       virtual void print (std::ostream & out_ = std::clog,
                           const std::string & title_ = "",
@@ -78,11 +78,6 @@ namespace snemo {
       const topology_2e & get_2e_topology () const;
 
       topology_2e & grab_2e_topology ();
-
-      struct introspection_activator
-      {
-        introspection_activator ();
-      };
 
     public:
 

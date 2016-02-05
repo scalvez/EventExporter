@@ -9,14 +9,13 @@
 #include <boost/filesystem.hpp>
 
 #include <falaise/snemo/processing/root_export_module.h>
-#include <falaise/snemo/exports/export_root_event.h>
+#include <falaise/snemo/exports/export_root_topology.h>
 
 #include <datatools/service_manager.h>
 #include <datatools/utils.h>
 
 #include <falaise/snemo/datamodels/data_model.h>
-#include <falaise/snemo/datamodels/event_header.h>
-#include <falaise/snemo/datamodels/calibrated_data.h>
+#include <falaise/snemo/datamodels/topology_data.h>
 
 #include <geomtools/geometry_service.h>
 #include <geomtools/manager.h>
@@ -30,7 +29,7 @@ namespace snemo {
 
       // Registration instantiation macro :
       DPP_MODULE_REGISTRATION_IMPLEMENT(root_export_module,
-                                        "snemo::reconstruction::processing::root_export_module");
+                                        "snemo::processing::root_export_module");
 
       bool root_export_module::is_terminated () const
       {
@@ -58,7 +57,7 @@ namespace snemo {
       void root_export_module::_set_defaults ()
       {
         _root_filenames_.reset ();
-        _root_event_.reset (0);
+        _root_topology_.reset (0);
         _io_accounting_.reset ();
         return;
       }
@@ -111,22 +110,22 @@ namespace snemo {
                      "Module '" << get_name () << "' has no '" << geo_label << "' service !");
         const geomtools::geometry_service & Geo
           = service_manager_.get<geomtools::geometry_service> (geo_label);
-        _exporter_.set_geom_manager (Geo.get_geom_manager ());
+        _topology_exporter_.set_geom_manager (Geo.get_geom_manager ());
 
         // Initialize the exporter :
         datatools::properties exporter_setup;
         setup_.export_starting_with (exporter_setup, "export.");
-        _exporter_.initialize (exporter_setup);
+        _topology_exporter_.initialize (exporter_setup);
 
         // Initialize the export event :
-        _root_event_.reset (new snemo::reconstruction::exports::export_root_event);
+        _root_topology_.reset (new snemo::exports::export_root_topology);
         std::map<std::string,int> topics;
-        if (_exporter_.get_topic_export_level("CAT")
-            == snemo::reconstruction::exports::event_exporter::EXPORT_TOPIC_INCLUDE)
-          {
-            topics["CAT"] = snemo::reconstruction::exports::event_exporter::EXPORT_TOPIC_INCLUDE;
-          }
-        _root_event_.get()->construct (_exporter_.get_export_flags (),
+        // if (_topology_exporter_.get_topic_export_level("CAT")
+        //     == snemo::exports::topology_exporter::EXPORT_TOPIC_INCLUDE)
+        //   {
+        //     topics["CAT"] = snemo::exports::event_exporter::EXPORT_TOPIC_INCLUDE;
+        //   }
+        _root_topology_.get()->construct (_topology_exporter_.get_export_flags (),
                                        topics);
 
         _set_initialized (true);
@@ -333,8 +332,8 @@ namespace snemo {
         if (_root_tree_ != 0)
           {
             _root_tree_->Print ();
-            snemo::reconstruction::exports::export_root_event & EE = *_root_event_.get ();
-            EE.detach_branches ();
+            snemo::exports::export_root_topology & ET = *_root_topology_.get ();
+            ET.detach_branches ();
             _root_tree_->SetDirectory (_root_sink_);
             // Ensure the ROOT file is the current directory :
             _root_sink_->cd ();
@@ -353,8 +352,8 @@ namespace snemo {
         _root_tree_ = new TTree("snemodata","SuperNEMO event model");
         _root_tree_->SetDirectory (_root_sink_); // make even more sure...
 
-        snemo::reconstruction::exports::export_root_event & EE = *_root_event_.get ();
-        EE.setup_tree (_root_tree_);
+        snemo::exports::export_root_topology & ET = *_root_topology_.get ();
+        ET.setup_tree (_root_tree_);
         _root_tree_->Print ();
         DT_LOG_TRACE (get_logging_priority (), "Exiting.");
         return 0;
@@ -382,15 +381,15 @@ namespace snemo {
       {
         DT_LOG_TRACE (get_logging_priority (), "Entering...");
         // Get a reference to the export ROOT event :
-        snemo::reconstruction::exports::export_root_event & EE = *_root_event_.get ();
-        DT_LOG_DEBUG (get_logging_priority (), "Reference to exported ROOT event is ok.");
+        snemo::exports::export_root_topology & ET = *_root_topology_.get ();
+        DT_LOG_DEBUG (get_logging_priority (), "Reference to exported ROOT topology is ok.");
 
         // Export the SN@ilWare event data model to the export event:
-        _exporter_.run (event_record_, EE);
+        _topology_exporter_.run (event_record_, ET);
         DT_LOG_DEBUG (get_logging_priority (), "SN@ilWare event has been exported.");
 
         // Fill the memory addressed by branches in the ROOT tree:
-        EE.fill_memory ();
+        ET.fill_memory ();
         DT_LOG_DEBUG (get_logging_priority (), "Exported ROOT event has been pushed in branched memory.");
 
         // Final store, using the 'export setup' of the exporter  :

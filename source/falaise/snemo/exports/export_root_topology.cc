@@ -51,7 +51,7 @@ namespace snemo {
             bank_description = "topology_2e";
             bank_export_version<topology_2e>(bank_version);
             _branch_manager_.init_bank_from_camp ("2e",
-                                                  topology_exporter::EXPORT_TOPOLOGY_2e,
+                                                  topology_exporter::EXPORT_TOPOLOGY_2E,
                                                   bank_version,
                                                   bank_description,
                                                   branch_entry_type::SCALAR_DATA);

@@ -136,14 +136,14 @@ namespace snemo {
       {
         _bank_labels_.clear ();
         // Default bank names for "EH", "SD", "CD", "TCD", "TTD" :
-        _bank_labels_[sdm::data_info::TOPOLOGY_DATA_LABEL]    = sdm::data_info::default_topology_data_label();
+        _bank_labels_[sdm::data_info::default_topology_data_label()]    = sdm::data_info::default_topology_data_label();
         return;
       }
 
       void base_data_bank_exporter::_init_defaults ()
       {
         _set_default_bank_labels ();
-        _export_flags_ = NO_EXPORT;
+        _export_flags_ = 0; //NO_EXPORT;
         _geom_manager_ = 0;
         return;
       }

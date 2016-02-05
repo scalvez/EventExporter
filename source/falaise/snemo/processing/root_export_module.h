@@ -28,6 +28,8 @@
 #include <dpp/base_module.h>
 
 #include <falaise/snemo/exports/topology_exporter.h>
+#include <falaise/snemo/exports/base_data_bank_exporter.h>
+#include <falaise/snemo/exports/export_root_topology.h>
 
 #include <datatools/smart_filename.h>
 
@@ -98,10 +100,11 @@ namespace snemo {
 
     private:
 
-      exports::event_exporter   _exporter_;       //!< The exporter
+      // exports::topology_exporter   _exporter_;       //!< The exporter
       datatools::smart_filename _root_filenames_; //!< Filenames
 
-      boost::scoped_ptr<exports::export_root_event> _root_event_;
+      exports::topology_exporter   _topology_exporter_;  //!< The exporter
+      boost::scoped_ptr<exports::export_root_topology> _root_topology_;
       TFile *                                       _root_sink_;
       TTree *                                       _root_tree_;
       io_accounting_type                            _io_accounting_;

@@ -78,7 +78,7 @@ namespace snemo {
 
       protected:
 
-        void _set_default_bank_labels ();
+        // void _set_default_bank_labels ();
 
         void _init_defaults ();
 
