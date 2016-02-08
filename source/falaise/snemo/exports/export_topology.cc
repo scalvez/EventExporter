@@ -41,7 +41,14 @@ namespace snemo {
 
       export_topology::export_topology ()
       {
-        reset ();
+        static bool activated = false;
+        if (! activated)
+          {
+            implement_introspection ();
+            activated = true;
+          }
+
+      reset ();
         return;
       }
 
@@ -77,13 +84,17 @@ namespace snemo {
         return;
       }
 
-      const topology_2e &
-      export_topology::get_2e_topology () const
+      const topology_2e & export_topology::get_2e_topology () const
       {
         return _topology_2e_;
       }
 
-         void export_topology::_implement_introspection ()
+      topology_2e & export_topology::grab_2e_topology ()
+      {
+        return _topology_2e_;
+      }
+
+      void export_topology::implement_introspection ()
       {
         std::clog << "NOTICE: export_topology::implement_introspection: Entering...\n";
 
@@ -93,10 +104,10 @@ namespace snemo {
             .constructor0()
             .property ("electron_minimal_energy", &topology_2e::electron_minimal_energy)
             .tag ("ctype", "double")
-            .tag ("unit", "keV")
+            .tag ("unit", "MeV")
             .property ("electron_maximal_energy", &topology_2e::electron_maximal_energy)
             .tag ("ctype", "double")
-            .tag ("unit", "keV")
+            .tag ("unit", "MeV")
             .property ("electrons_internal_probability", &topology_2e::electrons_internal_probability)
             .tag ("ctype", "double")
             .property ("electrons_external_probability", &topology_2e::electrons_external_probability)

@@ -69,7 +69,7 @@ namespace snemo {
       virtual void reset ();
       virtual void clear_data ();
 
-      virtual void _implement_introspection ();
+      virtual void implement_introspection ();
 
       virtual void print (std::ostream & out_ = std::clog,
                           const std::string & title_ = "",

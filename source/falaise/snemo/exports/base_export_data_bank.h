@@ -83,14 +83,14 @@ namespace snemo {
       virtual void reset () = 0;
       virtual void clear_data () = 0;
 
-      void implement_introspection ();
+      virtual void implement_introspection () = 0;
 
       virtual void print (std::ostream & out_ = std::clog,
                           const std::string & title_ = "",
                           const std::string & indent_ = "") const = 0;
 
-    protected :
-      virtual void _implement_introspection () = 0;
+    // protected :
+    //   virtual void _implement_introspection () = 0;
 
     };
 

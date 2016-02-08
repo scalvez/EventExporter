@@ -22,12 +22,12 @@ namespace snemo {
 
     base_export_data_bank::base_export_data_bank ()
     {
-      static bool activated = false;
-      if (! activated)
-        {
-          implement_introspection ();
-          activated = true;
-        }
+      // static bool activated = false;
+      // if (! activated)
+      //   {
+      //     implement_introspection ();
+      //     activated = true;
+      //   }
       return;
     }
 
@@ -36,11 +36,13 @@ namespace snemo {
       return;
     }
 
-    void base_export_data_bank::implement_introspection ()
-    {
-      _implement_introspection();
-      return;
-    }
+    // void base_export_data_bank::implement_introspection ()
+    // {
+    //   std::cout << "test " << std::endl;
+    //   _implement_introspection();
+    //   std::cout << "end test " << std::endl;
+    //   return;
+    // }
 
   }  // end of namespace exports
 
