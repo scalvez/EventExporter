@@ -72,8 +72,6 @@ namespace snemo {
         int run (const snemo::datamodel::event_record &,
                  snemo::exports::export_topology &);
 
-        uint32_t get_export_flags () const;
-
         void dump (std::ostream & = std::clog) const;
 
       protected:

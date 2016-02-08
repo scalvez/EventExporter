@@ -39,8 +39,8 @@ list(APPEND FalaiseEventExporterPlugin_SOURCES
   source/falaise/snemo/exports/base_data_bank_exporter.cc
   source/falaise/snemo/exports/export_topology.cc
   source/falaise/snemo/exports/export_root_topology.cc
-  source/falaise/snemo/exports/root_utils.h
-  source/falaise/snemo/exports/loggable_support.h
+  source/falaise/snemo/exports/root_utils.cc
+  source/falaise/snemo/exports/loggable_support.cc
   source/falaise/snemo/processing/root_export_module.cc
   )
 

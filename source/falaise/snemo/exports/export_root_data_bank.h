@@ -34,7 +34,7 @@ namespace snemo {
     namespace exports {
 
       struct export_root_data_bank : public export_event,
-                                 public loggable_support
+                                     public loggable_support
       {
       public:
 
