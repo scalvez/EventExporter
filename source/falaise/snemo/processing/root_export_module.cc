@@ -31,11 +31,6 @@ namespace snemo {
       DPP_MODULE_REGISTRATION_IMPLEMENT(root_export_module,
                                         "snemo::processing::root_export_module");
 
-      bool root_export_module::is_terminated () const
-      {
-        return _io_accounting_.terminated;
-      }
-
       root_export_module::io_accounting_type::io_accounting_type ()
       {
         reset ();
@@ -52,6 +47,11 @@ namespace snemo {
         record_counter = 0;
         file_index = -1;
         return;
+      }
+
+      bool root_export_module::is_terminated () const
+      {
+        return _io_accounting_.terminated;
       }
 
       void root_export_module::_set_defaults ()
@@ -137,7 +137,6 @@ namespace snemo {
         DT_THROW_IF (! is_initialized (), std::logic_error,
                      "Module '" << get_name () << "' is not initialized !");
 
-        std::cout << "debug reset" << std::endl;
         // Reset the output file :
         _close_file ();
 
@@ -145,7 +144,6 @@ namespace snemo {
         _root_tree_ = 0;
         _root_topology_.reset();
         _set_initialized (false);
-        std::cout << "debug reset ended" << std::endl;
         return;
       }
 
@@ -162,9 +160,7 @@ namespace snemo {
       // Destructor :
       root_export_module::~root_export_module()
       {
-        std::cout << "debug destructor" << std::endl;
         if (is_initialized ()) root_export_module::reset ();
-        std::cout << "debug destructor ended" << std::endl;
         return;
       }
 
@@ -183,7 +179,7 @@ namespace snemo {
         dpp::base_module::process_status store_status = dpp::base_module::PROCESS_SUCCESS;
         DT_LOG_TRACE (get_logging_priority (), "Entering...");
 
-        if (_io_accounting_.terminated)
+        if (is_terminated())
           {
             // The module has now finished its job : we do not process this event
             store_status = dpp::base_module::PROCESS_STOP;
@@ -272,9 +268,7 @@ namespace snemo {
           {
             if (_root_sink_ != 0)
               {
-                std::cout << "debug close file process" << std::endl;
                 _close_file ();
-                std::cout << "debug ended close file process" << std::endl;
               }
             _io_accounting_.file_record_counter = 0;
             if (_io_accounting_.max_files > 0)

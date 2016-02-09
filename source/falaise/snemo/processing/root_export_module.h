@@ -100,7 +100,6 @@ namespace snemo {
 
     private:
 
-      // exports::topology_exporter   _exporter_;       //!< The exporter
       datatools::smart_filename _root_filenames_; //!< Filenames
 
       exports::topology_exporter   _topology_exporter_;  //!< The exporter

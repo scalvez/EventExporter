@@ -148,6 +148,7 @@ namespace snemo {
           return;
         }
       const std::string & branch_parent_name = branch_info_.get_parent_name ();
+
       DT_THROW_IF (! topology_class.hasProperty (branch_parent_name), std::logic_error,
                    "Cannot find parent for branch '" << bi_name
                    << "' as a property named '" << branch_parent_name << "' !");
@@ -240,10 +241,6 @@ namespace snemo {
 
     void export_root_topology::fill_memory ()
     {
-
-      const export_topology & ET = static_cast<const export_topology &>(*this);
-      camp::UserObject proxyET (ET);
-
       // Loop on branch infos:
       for (branch_manager::bi_col_type::iterator bi_iter
              = _branch_manager_.grab_branch_infos ().begin ();

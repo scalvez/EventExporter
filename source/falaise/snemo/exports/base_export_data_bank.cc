@@ -36,14 +36,6 @@ namespace snemo {
       return;
     }
 
-    // void base_export_data_bank::implement_introspection ()
-    // {
-    //   std::cout << "test " << std::endl;
-    //   _implement_introspection();
-    //   std::cout << "end test " << std::endl;
-    //   return;
-    // }
-
   }  // end of namespace exports
 
 }  // end of namespace snemo

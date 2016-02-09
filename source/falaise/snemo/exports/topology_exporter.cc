@@ -116,7 +116,6 @@ namespace snemo {
         et_.clear_data ();
         if (base_data_bank_exporter::is_exported (se::topology_exporter::EXPORT_TOPOLOGY_2E))
           {
-            std::cout << "topology_exporter::run  export 2e " << std::endl;
             _export_topology_2e (er_, et_);
           }
 
@@ -138,8 +137,7 @@ namespace snemo {
 
         const snemo::datamodel::topology_2e_pattern & a_2e_pattern
           = dynamic_cast<const snemo::datamodel::topology_2e_pattern &>(TD.get_pattern());
-        std::cout << " --------- minimal energy " << a_2e_pattern.get_electron_minimal_energy()
-                  << std::endl;
+
         et_.grab_2e_topology().electron_minimal_energy = a_2e_pattern.get_electron_minimal_energy();
         et_.grab_2e_topology().electron_maximal_energy = a_2e_pattern.get_electron_maximal_energy();
 
