@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-#include <falaise/snemo/exports/export_topology.h>
+// #include <falaise/snemo/exports/export_topology.h>
 #include <falaise/snemo/exports/root_utils.h>
 #include <falaise/snemo/exports/loggable_support.h>
 
@@ -65,6 +65,9 @@ namespace snemo {
         void print (std::ostream & out_ = std::clog,
                     const std::string & title_ = "",
                     const std::string & indent_ = "") const;
+
+        /// Reset
+        virtual void reset();
 
       private:
         uint32_t       _store_bits_; /// Store bits

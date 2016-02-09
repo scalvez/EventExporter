@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-#include <falaise/snemo/exports/export_topology.h>
+// #include <falaise/snemo/exports/export_topology.h>
 #include <falaise/snemo/exports/root_utils.h>
 #include <falaise/snemo/exports/loggable_support.h>
 

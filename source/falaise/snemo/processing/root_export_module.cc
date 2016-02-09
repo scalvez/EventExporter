@@ -137,12 +137,15 @@ namespace snemo {
         DT_THROW_IF (! is_initialized (), std::logic_error,
                      "Module '" << get_name () << "' is not initialized !");
 
+        std::cout << "debug reset" << std::endl;
         // Reset the output file :
         _close_file ();
 
         _set_defaults ();
-
+        _root_tree_ = 0;
+        _root_topology_.reset();
         _set_initialized (false);
+        std::cout << "debug reset ended" << std::endl;
         return;
       }
 
@@ -159,7 +162,9 @@ namespace snemo {
       // Destructor :
       root_export_module::~root_export_module()
       {
+        std::cout << "debug destructor" << std::endl;
         if (is_initialized ()) root_export_module::reset ();
+        std::cout << "debug destructor ended" << std::endl;
         return;
       }
 
@@ -267,7 +272,9 @@ namespace snemo {
           {
             if (_root_sink_ != 0)
               {
+                std::cout << "debug close file process" << std::endl;
                 _close_file ();
+                std::cout << "debug ended close file process" << std::endl;
               }
             _io_accounting_.file_record_counter = 0;
             if (_io_accounting_.max_files > 0)
@@ -297,7 +304,6 @@ namespace snemo {
         DT_LOG_TRACE (get_logging_priority (), "Exiting.");
         return store_status;
       }
-
 
       dpp::base_module::process_status root_export_module::_open_file (const std::string & sink_label_)
       {
@@ -375,7 +381,6 @@ namespace snemo {
         DT_LOG_TRACE (get_logging_priority (), "Exiting.");
         return 0;
       }
-
 
       int root_export_module::_store_event (const snemo::datamodel::event_record & event_record_)
       {

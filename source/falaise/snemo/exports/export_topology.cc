@@ -2,7 +2,6 @@
 /* export_topology.cc */
 
 #include <falaise/snemo/exports/export_topology.h>
-#include <falaise/snemo/exports/topology_exporter.h>
 
 #include <sstream>
 #include <limits>
