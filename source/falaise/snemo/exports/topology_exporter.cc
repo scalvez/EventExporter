@@ -321,8 +321,7 @@ namespace snemo {
       et_.grab_2e_topology().electrons_internal_probability = a_2e_pattern.get_electrons_internal_probability();
       et_.grab_2e_topology().electrons_external_probability = a_2e_pattern.get_electrons_external_probability();
 
-      // et_.grab_2e_topology().electrons_vertices_probability = a_2e_pattern.get_electrons_vertices_probability();
-      et_.grab_2e_topology().electrons_vertices_probability = 1.;
+      et_.grab_2e_topology().electrons_vertices_probability = a_2e_pattern.get_electrons_vertices_probability();
       et_.grab_2e_topology().electrons_angle = a_2e_pattern.get_electrons_angle();
 
       double length_Emin = datatools::invalid_real();
