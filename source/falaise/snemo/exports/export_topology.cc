@@ -390,7 +390,7 @@ namespace snemo {
             .tag ("version", 0)
             .constructor0()
             // Topology 2e :
-            .property ("e", &export_topology::_topology_1e_)
+            .property ("1e", &export_topology::_topology_1e_)
             .property ("1e1a", &export_topology::_topology_1e1a_)
             .property ("2e", &export_topology::_topology_2e_)
             .property ("1e1p", &export_topology::_topology_1e1p_)
