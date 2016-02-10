@@ -268,8 +268,7 @@ namespace snemo {
 
       const snemo::datamodel::topology_1e_pattern & a_1e_pattern
         = dynamic_cast<const snemo::datamodel::topology_1e_pattern &>(TD.get_pattern());
-      std::cout << " a_1e_pattern.get_electron_energy() " << a_1e_pattern.get_electron_energy() <<std::endl;
-      std::cout << " a_1e_pattern.get_electron_angle() " << a_1e_pattern.get_electron_angle() <<std::endl;
+
       et_.grab_1e_topology().electron_energy = a_1e_pattern.get_electron_energy();
       et_.grab_1e_topology().electron_angle = a_1e_pattern.get_electron_angle();
 
@@ -292,6 +291,9 @@ namespace snemo {
       const snemo::datamodel::topology_1e1a_pattern & a_1e1a_pattern
         = dynamic_cast<const snemo::datamodel::topology_1e1a_pattern &>(TD.get_pattern());
 
+      // et_.grab_1e1a_topology().electron_energy = a_1e1a_pattern.get_electron_energy();
+      // et_.grab_1e1a_topology().electron_alpha_angle = a_1e1a_pattern.get_electron_alpha_angle();
+
       return 0;
     }
 
@@ -313,10 +315,38 @@ namespace snemo {
 
       et_.grab_2e_topology().electron_minimal_energy = a_2e_pattern.get_electron_minimal_energy();
       et_.grab_2e_topology().electron_maximal_energy = a_2e_pattern.get_electron_maximal_energy();
+      et_.grab_2e_topology().electrons_energy_difference = a_2e_pattern.get_electrons_energy_difference();
+      et_.grab_2e_topology().electrons_energy_sum = a_2e_pattern.get_electrons_energy_sum();
+
       et_.grab_2e_topology().electrons_internal_probability = a_2e_pattern.get_electrons_internal_probability();
       et_.grab_2e_topology().electrons_external_probability = a_2e_pattern.get_electrons_external_probability();
+
+      // et_.grab_2e_topology().electrons_vertices_probability = a_2e_pattern.get_electrons_vertices_probability();
+      et_.grab_2e_topology().electrons_vertices_probability = 1.;
       et_.grab_2e_topology().electrons_angle = a_2e_pattern.get_electrons_angle();
 
+      double length_Emin = datatools::invalid_real();
+
+      if (TD.get_pattern().get_particle_track(a_2e_pattern.get_minimal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2e_pattern.get_minimal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emin = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of minimal energy has no attached trajectory !");
+      }
+      double length_Emax = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2e_pattern.get_maximal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2e_pattern.get_maximal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emax = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of maximal energy has no attached trajectory !");
+      }
+
+      et_.grab_2e_topology().electron_Emin_track_length = length_Emin;
+      et_.grab_2e_topology().electron_Emax_track_length = length_Emax;
       return 0;
     }
 

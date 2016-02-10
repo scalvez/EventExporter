@@ -27,7 +27,7 @@ namespace snemo {
       {
         electron_energy = constants::INVALID_DOUBLE;
         electron_angle = constants::INVALID_DOUBLE;
-       return;
+        return;
       }
 
       topology_1e1a::topology_1e1a ()
@@ -51,13 +51,20 @@ namespace snemo {
       {
         electron_minimal_energy = constants::INVALID_DOUBLE;
         electron_maximal_energy = constants::INVALID_DOUBLE;
+        electrons_energy_difference = constants::INVALID_DOUBLE;
+        electrons_energy_sum = constants::INVALID_DOUBLE;
 
         electrons_internal_probability = constants::INVALID_DOUBLE;
         electrons_external_probability = constants::INVALID_DOUBLE;
 
+        electrons_vertices_probability = constants::INVALID_DOUBLE;
+
         electrons_angle = constants::INVALID_DOUBLE;
 
-          return;
+        electron_Emin_track_length = constants::INVALID_DOUBLE;
+        electron_Emax_track_length = constants::INVALID_DOUBLE;
+
+        return;
       }
 
       topology_1e1p::topology_1e1p ()
@@ -343,13 +350,27 @@ namespace snemo {
             .property ("electron_maximal_energy", &topology_2e::electron_maximal_energy)
             .tag ("ctype", "double")
             .tag ("unit", "MeV")
+            .property ("electrons_energy_difference", &topology_2e::electrons_energy_difference)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electrons_energy_sum", &topology_2e::electrons_energy_sum)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
             .property ("electrons_internal_probability", &topology_2e::electrons_internal_probability)
             .tag ("ctype", "double")
             .property ("electrons_external_probability", &topology_2e::electrons_external_probability)
             .tag ("ctype", "double")
+            .property ("electrons_vertices_probability", &topology_2e::electrons_vertices_probability)
+            .tag ("ctype", "double")
             .property ("electrons_angle", &topology_2e::electrons_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
+            .property ("electron_Emin_track_length", &topology_2e::electron_Emin_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_Emax_track_length", &topology_2e::electron_Emax_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
             ;
           camp::Class::declare< topology_1e1p >("topology_1e1p")
             .tag ("version", 0)

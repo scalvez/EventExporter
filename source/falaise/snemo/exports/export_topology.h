@@ -76,12 +76,18 @@ namespace snemo {
 
       double electron_minimal_energy;
       double electron_maximal_energy;
+      double electrons_energy_difference;
+      double electrons_energy_sum;
 
       double electrons_internal_probability;
       double electrons_external_probability;
 
+      double electrons_vertices_probability;
       double electrons_angle;
-    };
+
+      double electron_Emin_track_length;
+      double electron_Emax_track_length;
+};
 
     struct topology_1e1p : base_topology
     {
