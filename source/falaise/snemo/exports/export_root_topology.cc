@@ -42,16 +42,155 @@ namespace snemo {
           _branch_manager_.add_topic(i->first, i->second);
         }
 
+      // EXPORT_TOPOLOGY_1E :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_1e";
+          bank_export_version<topology_1e>(bank_version);
+          _branch_manager_.init_bank_from_camp ("1e",
+                                                topology_exporter::EXPORT_TOPOLOGY_1E,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_1E1A :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E1A)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_1e1a";
+          bank_export_version<topology_1e1a>(bank_version);
+          _branch_manager_.init_bank_from_camp ("1e1a",
+                                                topology_exporter::EXPORT_TOPOLOGY_1E1A,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
       // EXPORT_TOPOLOGY_2E :
       if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_2E)
         {
-          // "bank" to change with "topology"
           std::string bank_description;
           int32_t bank_version;
           bank_description = "topology_2e";
           bank_export_version<topology_2e>(bank_version);
           _branch_manager_.init_bank_from_camp ("2e",
                                                 topology_exporter::EXPORT_TOPOLOGY_2E,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_1E1P :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E1P)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_1e1p";
+          bank_export_version<topology_1e1p>(bank_version);
+          _branch_manager_.init_bank_from_camp ("1e1p",
+                                                topology_exporter::EXPORT_TOPOLOGY_1E1P,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_2P :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_2P)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_2p";
+          bank_export_version<topology_2p>(bank_version);
+          _branch_manager_.init_bank_from_camp ("2p",
+                                                topology_exporter::EXPORT_TOPOLOGY_2P,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_1E1G :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E1G)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_1e1g";
+          bank_export_version<topology_1e1g>(bank_version);
+          _branch_manager_.init_bank_from_camp ("1e1g",
+                                                topology_exporter::EXPORT_TOPOLOGY_1E1G,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_1E2G :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E2G)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_1e2g";
+          bank_export_version<topology_1e2g>(bank_version);
+          _branch_manager_.init_bank_from_camp ("1e2g",
+                                                topology_exporter::EXPORT_TOPOLOGY_1E2G,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_1E3G :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E3G)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_1e3g";
+          bank_export_version<topology_1e3g>(bank_version);
+          _branch_manager_.init_bank_from_camp ("1e3g",
+                                                topology_exporter::EXPORT_TOPOLOGY_1E3G,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_2E1G :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_2E1G)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_2e1g";
+          bank_export_version<topology_2e1g>(bank_version);
+          _branch_manager_.init_bank_from_camp ("2e1g",
+                                                topology_exporter::EXPORT_TOPOLOGY_2E1G,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_2E2G :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_2E2G)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_2e2g";
+          bank_export_version<topology_2e2g>(bank_version);
+          _branch_manager_.init_bank_from_camp ("2e2g",
+                                                topology_exporter::EXPORT_TOPOLOGY_2E2G,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
+      // EXPORT_TOPOLOGY_2E3G :
+      if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_2E3G)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "topology_2e3g";
+          bank_export_version<topology_2e3g>(bank_version);
+          _branch_manager_.init_bank_from_camp ("2e3g",
+                                                topology_exporter::EXPORT_TOPOLOGY_2E3G,
                                                 bank_version,
                                                 bank_description,
                                                 branch_entry_type::SCALAR_DATA);

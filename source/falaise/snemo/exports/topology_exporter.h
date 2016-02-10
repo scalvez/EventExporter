@@ -30,6 +30,8 @@
 #include <falaise/snemo/datamodels/data_model.h>
 #include <falaise/snemo/exports/base_data_bank_exporter.h>
 
+#include <falaise/snemo/exports/loggable_support.h>
+
 namespace geomtools {
   class manager;
 }
@@ -50,11 +52,30 @@ namespace snemo {
           {
             NO_EXPORT = 0,
             // Needs 'Topology 2e' :
-            EXPORT_TOPOLOGY_2E           = datatools::bit_mask::bit00,
+            EXPORT_TOPOLOGY_1E           = datatools::bit_mask::bit00,
+            EXPORT_TOPOLOGY_1E1A         = datatools::bit_mask::bit01,
+            EXPORT_TOPOLOGY_2E           = datatools::bit_mask::bit02,
+            EXPORT_TOPOLOGY_1E1P         = datatools::bit_mask::bit03,
+            EXPORT_TOPOLOGY_2P           = datatools::bit_mask::bit04,
+            EXPORT_TOPOLOGY_1E1G         = datatools::bit_mask::bit05,
+            EXPORT_TOPOLOGY_1E2G         = datatools::bit_mask::bit06,
+            EXPORT_TOPOLOGY_1E3G         = datatools::bit_mask::bit07,
+            EXPORT_TOPOLOGY_2E1G         = datatools::bit_mask::bit08,
+            EXPORT_TOPOLOGY_2E2G         = datatools::bit_mask::bit09,
+            EXPORT_TOPOLOGY_2E3G         = datatools::bit_mask::bit10,
 
             EXPORT_ALL =
-            EXPORT_TOPOLOGY_2E,
-            // | EXPORT_TOPOLOGY_1E1G
+            EXPORT_TOPOLOGY_1E
+            | EXPORT_TOPOLOGY_1E1A
+            | EXPORT_TOPOLOGY_2E
+            | EXPORT_TOPOLOGY_1E1P
+            | EXPORT_TOPOLOGY_2P
+            | EXPORT_TOPOLOGY_1E1G
+            | EXPORT_TOPOLOGY_1E2G
+            | EXPORT_TOPOLOGY_1E3G
+            | EXPORT_TOPOLOGY_2E1G
+            | EXPORT_TOPOLOGY_2E2G
+            | EXPORT_TOPOLOGY_2E3G,
 
             EXPORT_LAST = EXPORT_TOPOLOGY_2E,
           };
@@ -80,8 +101,38 @@ namespace snemo {
 
         void _init_defaults ();
 
+        int _export_topology_1e (const datatools::things &,
+                                 snemo::exports::export_topology &);
+
+        int _export_topology_1e1a (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
         int _export_topology_2e (const datatools::things &,
                                  snemo::exports::export_topology &);
+
+        int _export_topology_1e1p (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
+        int _export_topology_2p (const datatools::things &,
+                                 snemo::exports::export_topology &);
+
+        int _export_topology_1e1g (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
+        int _export_topology_1e2g (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
+        int _export_topology_1e3g (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
+        int _export_topology_2e1g (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
+        int _export_topology_2e2g (const datatools::things &,
+                                   snemo::exports::export_topology &);
+
+        int _export_topology_2e3g (const datatools::things &,
+                                   snemo::exports::export_topology &);
 
       };
 

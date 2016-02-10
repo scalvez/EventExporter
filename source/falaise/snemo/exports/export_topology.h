@@ -44,6 +44,26 @@ namespace snemo {
       base_topology ();
     };
 
+    struct topology_1e : base_topology
+    {
+    public:
+      topology_1e ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_1e1a : base_topology
+    {
+    public:
+      topology_1e1a ();
+      virtual void reset ();
+
+    public:
+
+    };
+
     struct topology_2e : base_topology
     {
     public:
@@ -61,6 +81,86 @@ namespace snemo {
       double electrons_angle;
     };
 
+    struct topology_1e1p : base_topology
+    {
+    public:
+      topology_1e1p ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_2p : base_topology
+    {
+    public:
+      topology_2p ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_1e1g : base_topology
+    {
+    public:
+      topology_1e1g ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_1e2g : base_topology
+    {
+    public:
+      topology_1e2g ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_1e3g : base_topology
+    {
+    public:
+      topology_1e3g ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_2e1g : base_topology
+    {
+    public:
+      topology_2e1g ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_2e2g : base_topology
+    {
+    public:
+      topology_2e2g ();
+      virtual void reset ();
+
+    public:
+
+    };
+
+    struct topology_2e3g : base_topology
+    {
+    public:
+      topology_2e3g ();
+      virtual void reset ();
+
+    public:
+
+    };
+
     struct export_topology : base_export_data_bank
     {
     public:
@@ -75,14 +175,64 @@ namespace snemo {
                           const std::string & title_ = "",
                           const std::string & indent_ = "") const;
 
+      const topology_1e & get_1e_topology () const;
+
+      topology_1e & grab_1e_topology ();
+
+      const topology_1e1a & get_1e1a_topology () const;
+
+      topology_1e1a & grab_1e1a_topology ();
+
       const topology_2e & get_2e_topology () const;
 
       topology_2e & grab_2e_topology ();
 
+      const topology_1e1p & get_1e1p_topology () const;
+
+      topology_1e1p & grab_1e1p_topology ();
+
+      const topology_2p & get_2p_topology () const;
+
+      topology_2p & grab_2p_topology ();
+
+      const topology_1e1g & get_1e1g_topology () const;
+
+      topology_1e1g & grab_1e1g_topology ();
+
+      const topology_1e2g & get_1e2g_topology () const;
+
+      topology_1e2g & grab_1e2g_topology ();
+
+      const topology_1e3g & get_1e3g_topology () const;
+
+      topology_1e3g & grab_1e3g_topology ();
+
+      const topology_2e1g & get_2e1g_topology () const;
+
+      topology_2e1g & grab_2e1g_topology ();
+
+      const topology_2e2g & get_2e2g_topology () const;
+
+      topology_2e2g & grab_2e2g_topology ();
+
+      const topology_2e3g & get_2e3g_topology () const;
+
+      topology_2e3g & grab_2e3g_topology ();
+
     public:
 
       // Topology 2e data :
+      snemo::exports::topology_1e _topology_1e_;
+      snemo::exports::topology_1e1a _topology_1e1a_;
       snemo::exports::topology_2e _topology_2e_;
+      snemo::exports::topology_1e1p _topology_1e1p_;
+      snemo::exports::topology_2p _topology_2p_;
+      snemo::exports::topology_1e1g _topology_1e1g_;
+      snemo::exports::topology_1e2g _topology_1e2g_;
+      snemo::exports::topology_1e3g _topology_1e3g_;
+      snemo::exports::topology_2e1g _topology_2e1g_;
+      snemo::exports::topology_2e2g _topology_2e2g_;
+      snemo::exports::topology_2e3g _topology_2e3g_;
 
     };
 
