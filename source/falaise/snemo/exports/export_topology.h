@@ -52,6 +52,8 @@ namespace snemo {
 
     public:
 
+      double electron_energy;
+      double electron_angle;
     };
 
     struct topology_1e1a : base_topology
@@ -240,7 +242,17 @@ namespace snemo {
 
 } // end of namespace snemo
 
+CAMP_TYPE (snemo::exports::topology_1e);
+CAMP_TYPE (snemo::exports::topology_1e1a);
 CAMP_TYPE (snemo::exports::topology_2e);
+CAMP_TYPE (snemo::exports::topology_1e1p);
+CAMP_TYPE (snemo::exports::topology_2p);
+CAMP_TYPE (snemo::exports::topology_1e1g);
+CAMP_TYPE (snemo::exports::topology_1e2g);
+CAMP_TYPE (snemo::exports::topology_1e3g);
+CAMP_TYPE (snemo::exports::topology_2e1g);
+CAMP_TYPE (snemo::exports::topology_2e2g);
+CAMP_TYPE (snemo::exports::topology_2e3g);
 CAMP_TYPE (snemo::exports::export_topology);
 
 #endif // SNRECONSTRUCTION_EXPORTS_EXPORT_TOPOLOGY_H

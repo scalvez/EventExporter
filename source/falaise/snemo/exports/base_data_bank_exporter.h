@@ -94,9 +94,6 @@ namespace snemo {
 
         void _init_defaults ();
 
-        int _export_topology_2e (const datatools::things &,
-                                 snemo::exports::export_topology &);
-
         const std::map<std::string, std::string> & get_bank_labels () const;
 
         uint32_t _export_flags_;

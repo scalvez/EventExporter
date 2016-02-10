@@ -288,6 +288,10 @@ namespace snemo {
         }
       const std::string & branch_parent_name = branch_info_.get_parent_name ();
 
+      // if(! topology_class.hasProperty (branch_parent_name))
+        std::cout << " <<<<<<< Cannot find parent for branch '" << bi_name
+                  << "' as a property named '" << branch_parent_name << "' !" << std::endl;
+
       DT_THROW_IF (! topology_class.hasProperty (branch_parent_name), std::logic_error,
                    "Cannot find parent for branch '" << bi_name
                    << "' as a property named '" << branch_parent_name << "' !");

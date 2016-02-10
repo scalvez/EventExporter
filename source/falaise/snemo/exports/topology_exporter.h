@@ -26,11 +26,11 @@
 
 #include <boost/cstdint.hpp>
 
+#include <falaise/snemo/exports/loggable_support.h>
+
 #include <datatools/bit_mask.h>
 #include <falaise/snemo/datamodels/data_model.h>
 #include <falaise/snemo/exports/base_data_bank_exporter.h>
-
-#include <falaise/snemo/exports/loggable_support.h>
 
 namespace geomtools {
   class manager;

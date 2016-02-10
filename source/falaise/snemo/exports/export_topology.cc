@@ -25,7 +25,9 @@ namespace snemo {
 
       void topology_1e::reset ()
       {
-          return;
+        electron_energy = constants::INVALID_DOUBLE;
+        electron_angle = constants::INVALID_DOUBLE;
+       return;
       }
 
       topology_1e1a::topology_1e1a ()
@@ -179,12 +181,12 @@ namespace snemo {
        _topology_2e_.reset ();
        _topology_1e1p_.reset ();
        _topology_2p_.reset ();
-       _topology_1e1_.reset ();
-       _topology_1e2_.reset ();
-       _topology_1e3_.reset ();
-       _topology_2e1_.reset ();
-       _topology_2e2_.reset ();
-       _topology_2e3_.reset ();
+       _topology_1e1g_.reset ();
+       _topology_1e2g_.reset ();
+       _topology_1e3g_.reset ();
+       _topology_2e1g_.reset ();
+       _topology_2e2g_.reset ();
+       _topology_2e3g_.reset ();
         return;
       }
 
@@ -321,6 +323,12 @@ namespace snemo {
           camp::Class::declare< topology_1e >("topology_1e")
             .tag ("version", 0)
             .constructor0()
+            .property ("electron_energy", &topology_1e::electron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_angle", &topology_1e::electron_angle)
+            .tag ("ctype", "double")
+            .tag ("unit", "radian")
             ;
           camp::Class::declare< topology_1e1a >("topology_1e1a")
             .tag ("version", 0)

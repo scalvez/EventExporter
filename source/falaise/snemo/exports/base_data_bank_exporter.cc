@@ -5,7 +5,6 @@
 #include <falaise/snemo/exports/export_topology.h>
 
 #include <mctools/simulated_data.h>
-#include <falaise/snemo/datamodels/topology_2e_pattern.h>
 
 #include <mctools/utils.h>
 // #include <sncore/utils/utils.h>
@@ -147,13 +146,6 @@ namespace snemo {
         _geom_manager_ = 0;
         return;
       }
-
-      // //static
-      // std::string base_data_bank_exporter::get_export_bit_label (unsigned int bit_)
-      // {
-      //   if (bit_ == base_data_bank_exporter::EXPORT_TOPOLOGY_2E) return "topology_2e";
-      //   return "";
-      // }
 
       void base_data_bank_exporter::dump (std::ostream & out_) const
       {

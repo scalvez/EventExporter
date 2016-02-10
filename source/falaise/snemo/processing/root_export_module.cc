@@ -144,6 +144,7 @@ namespace snemo {
         _root_tree_ = 0;
         _root_topology_.reset();
         _set_initialized (false);
+        std::cout << "------ debug end of module reset " << std::endl;
         return;
       }
 
@@ -161,6 +162,7 @@ namespace snemo {
       root_export_module::~root_export_module()
       {
         if (is_initialized ()) root_export_module::reset ();
+        std::cout << "------ debug end of module destructor " << std::endl;
         return;
       }
 
