@@ -60,6 +60,7 @@ namespace snemo {
         electrons_vertices_probability = constants::INVALID_DOUBLE;
 
         electrons_angle = constants::INVALID_DOUBLE;
+        electrons_cos_angle = constants::INVALID_DOUBLE;
 
         electron_Emin_track_length = constants::INVALID_DOUBLE;
         electron_Emax_track_length = constants::INVALID_DOUBLE;
@@ -365,6 +366,8 @@ namespace snemo {
             .property ("electrons_angle", &topology_2e::electrons_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
+            .property ("electrons_cos_angle", &topology_2e::electrons_cos_angle)
+            .tag ("ctype", "double")
             .property ("electron_Emin_track_length", &topology_2e::electron_Emin_track_length)
             .tag ("ctype", "double")
             .tag ("unit", "mm")

@@ -84,6 +84,7 @@ namespace snemo {
 
       double electrons_vertices_probability;
       double electrons_angle;
+      double electrons_cos_angle;
 
       double electron_Emin_track_length;
       double electron_Emax_track_length;
