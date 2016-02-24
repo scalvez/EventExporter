@@ -13,6 +13,7 @@
 
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/replace.hpp>
 #include <camp/class.hpp>
 
 #include <datatools/exception.h>
@@ -452,7 +453,9 @@ namespace snemo {
                               bool array_,
                               unsigned int buffer_size_)
       {
-        set_name (name_);
+        std::string new_name = name_;
+        boost::replace_all(new_name, ".", "_");
+        set_name (new_name);
         set_type (type_);
         set_array (array_);
         set_buffer_size (buffer_size_);
