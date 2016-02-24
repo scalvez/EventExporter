@@ -318,9 +318,9 @@ namespace snemo {
       et_.grab_2e_topology().electrons_energy_difference = a_2e_pattern.get_electrons_energy_difference();
       et_.grab_2e_topology().electrons_energy_sum = a_2e_pattern.get_electrons_energy_sum();
 
-      if(a_2e_pattern.get_electrons_energy_sum()>4)
-        std::cout << "Emin Emax  " << a_2e_pattern.get_electron_minimal_energy() << "  "
-                  << a_2e_pattern.get_electron_maximal_energy() << std::endl;
+      // if(a_2e_pattern.get_electrons_energy_sum()>4)
+      //   std::cout << "Emin Emax  " << a_2e_pattern.get_electron_minimal_energy() << "  "
+      //             << a_2e_pattern.get_electron_maximal_energy() << std::endl;
 
       et_.grab_2e_topology().electrons_internal_probability = a_2e_pattern.get_electrons_internal_probability();
       et_.grab_2e_topology().electrons_external_probability = a_2e_pattern.get_electrons_external_probability();
