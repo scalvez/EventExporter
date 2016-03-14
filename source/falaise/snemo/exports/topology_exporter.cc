@@ -188,7 +188,8 @@ namespace snemo {
 
       //twice the work to get the TD bank
 
-      const std::string & td_label = base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+      // const std::string & td_label = base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+      const std::string & td_label = base_data_bank_exporter::_bank_labels_["TD"];
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data))
         {
           DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -257,7 +258,8 @@ namespace snemo {
                                                 se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -279,7 +281,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -301,7 +304,8 @@ namespace snemo {
                                                 se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -358,7 +362,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -377,7 +382,8 @@ namespace snemo {
                                                 se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -396,7 +402,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -415,7 +422,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -434,7 +442,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -454,7 +463,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -473,7 +483,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+      // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
@@ -492,7 +503,8 @@ namespace snemo {
                                                   se::export_topology & et_)
     {
       const std::string & td_label =
-        base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
+        base_data_bank_exporter::_bank_labels_["TD"];
+        // base_data_bank_exporter::_bank_labels_[sdm::data_info::default_topology_data_label()];
 
       if (! DATATOOLS_THINGS_CHECK_BANK(er_, td_label, sdm::topology_data)) {
         DT_THROW_IF (true, std::logic_error, "Missing topology data to be processed !");
