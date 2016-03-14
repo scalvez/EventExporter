@@ -135,7 +135,8 @@ namespace snemo {
       {
         _bank_labels_.clear ();
         // Default bank names for "EH", "SD", "CD", "TCD", "TTD" :
-        _bank_labels_[sdm::data_info::default_topology_data_label()]    = sdm::data_info::default_topology_data_label();
+        // _bank_labels_[sdm::data_info::default_topology_data_label()]    = sdm::data_info::default_topology_data_label();
+        _bank_labels_["TD"]    = "TD";
         return;
       }
 
