@@ -27,6 +27,7 @@ namespace snemo {
       {
         electron_energy = constants::INVALID_DOUBLE;
         electron_angle = constants::INVALID_DOUBLE;
+        electron_track_length = constants::INVALID_DOUBLE;
         return;
       }
 
@@ -337,6 +338,9 @@ namespace snemo {
             .property ("electron_angle", &topology_1e::electron_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
+            .property ("electron_track_length", &topology_1e::electron_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
             ;
           camp::Class::declare< topology_1e1a >("topology_1e1a")
             .tag ("version", 0)

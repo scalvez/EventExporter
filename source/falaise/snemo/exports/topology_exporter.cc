@@ -273,6 +273,7 @@ namespace snemo {
 
       et_.grab_1e_topology().electron_energy = a_1e_pattern.get_electron_energy();
       et_.grab_1e_topology().electron_angle = a_1e_pattern.get_electron_angle();
+      et_.grab_1e_topology().electron_track_length = a_1e_pattern.get_electron_track_length();
 
       return 0;
     }
@@ -334,7 +335,6 @@ namespace snemo {
       et_.grab_2e_topology().electrons_cos_angle = std::cos(a_2e_pattern.get_electrons_angle());
 
       double length_Emin = datatools::invalid_real();
-
       if (TD.get_pattern().get_particle_track(a_2e_pattern.get_minimal_energy_electron_name()).has_trajectory()) {
         const snemo::datamodel::tracker_trajectory & a_trajectory =
           TD.get_pattern().get_particle_track(a_2e_pattern.get_minimal_energy_electron_name()).get_trajectory();

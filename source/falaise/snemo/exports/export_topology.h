@@ -54,9 +54,10 @@ namespace snemo {
 
       double electron_energy;
       double electron_angle;
+      double electron_track_length;
     };
 
-    struct topology_1e1a : base_topology
+    struct topology_1e1a : base_topology // maybe make it inherit from 1e topology
     {
     public:
       topology_1e1a ();
@@ -88,7 +89,7 @@ namespace snemo {
 
       double electron_Emin_track_length;
       double electron_Emax_track_length;
-};
+    };
 
     struct topology_1e1p : base_topology
     {
