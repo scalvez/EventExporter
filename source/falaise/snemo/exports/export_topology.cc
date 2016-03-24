@@ -39,7 +39,16 @@ namespace snemo {
 
       void topology_1e1a::reset ()
       {
-          return;
+        electron_energy = constants::INVALID_DOUBLE;
+        electron_angle = constants::INVALID_DOUBLE;
+        electron_track_length = constants::INVALID_DOUBLE;
+        alpha_angle = constants::INVALID_DOUBLE;
+        alpha_track_length = constants::INVALID_DOUBLE;
+        electron_alpha_angle = constants::INVALID_DOUBLE;
+        electron_alpha_vertices_probability = constants::INVALID_DOUBLE;
+        alpha_delayed_time = constants::INVALID_DOUBLE;
+
+        return;
       }
 
       topology_2e::topology_2e ()
@@ -345,6 +354,29 @@ namespace snemo {
           camp::Class::declare< topology_1e1a >("topology_1e1a")
             .tag ("version", 0)
             .constructor0()
+            .property ("electron_energy", &topology_1e1a::electron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_angle", &topology_1e1a::electron_angle)
+            .tag ("ctype", "double")
+            .tag ("unit", "radian")
+            .property ("electron_track_length", &topology_1e1a::electron_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("alpha_angle", &topology_1e1a::alpha_angle)
+            .tag ("ctype", "double")
+            .tag ("unit", "radian")
+            .property ("alpha_track_length", &topology_1e1a::alpha_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_alpha_angle", &topology_1e1a::electron_alpha_angle)
+            .tag ("ctype", "double")
+            .tag ("unit", "radian")
+            .property ("electron_alpha_vertices_probability", &topology_1e1a::electron_alpha_vertices_probability)
+            .tag ("ctype", "double")
+            .property ("alpha_delayed_time", &topology_1e1a::alpha_delayed_time)
+            .tag ("ctype", "double")
+            .tag ("unit", "ns")
             ;
           camp::Class::declare< topology_2e >("topology_2e")
             .tag ("version", 0)

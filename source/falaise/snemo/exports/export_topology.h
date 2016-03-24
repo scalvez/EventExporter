@@ -65,6 +65,14 @@ namespace snemo {
 
     public:
 
+      double electron_energy;
+      double electron_angle;
+      double electron_track_length;
+      double alpha_angle;
+      double alpha_track_length;
+      double electron_alpha_angle;
+      double electron_alpha_vertices_probability;
+      double alpha_delayed_time;
     };
 
     struct topology_2e : base_topology

@@ -27,7 +27,6 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/foreach.hpp>
 
-
 namespace snemo {
 
   namespace exports {
@@ -295,8 +294,14 @@ namespace snemo {
       const snemo::datamodel::topology_1e1a_pattern & a_1e1a_pattern
         = dynamic_cast<const snemo::datamodel::topology_1e1a_pattern &>(TD.get_pattern());
 
-      // et_.grab_1e1a_topology().electron_energy = a_1e1a_pattern.get_electron_energy();
-      // et_.grab_1e1a_topology().electron_alpha_angle = a_1e1a_pattern.get_electron_alpha_angle();
+      et_.grab_1e1a_topology().electron_energy = a_1e1a_pattern.get_electron_energy();
+      et_.grab_1e1a_topology().electron_angle = a_1e1a_pattern.get_electron_angle();
+      et_.grab_1e1a_topology().electron_track_length = a_1e1a_pattern.get_electron_track_length();
+      et_.grab_1e1a_topology().alpha_angle = a_1e1a_pattern.get_alpha_angle();
+      et_.grab_1e1a_topology().alpha_track_length = a_1e1a_pattern.get_alpha_track_length();
+      et_.grab_1e1a_topology().electron_alpha_angle = a_1e1a_pattern.get_electron_alpha_angle();
+      et_.grab_1e1a_topology().electron_alpha_vertices_probability = a_1e1a_pattern.get_electron_alpha_vertices_probability();
+      et_.grab_1e1a_topology().alpha_delayed_time = a_1e1a_pattern.get_alpha_delayed_time();
 
       return 0;
     }
