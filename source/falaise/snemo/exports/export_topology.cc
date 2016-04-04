@@ -86,7 +86,22 @@ namespace snemo {
 
       void topology_1e1p::reset ()
       {
-          return;
+        electron_energy = constants::INVALID_DOUBLE;
+        positron_energy = constants::INVALID_DOUBLE;
+        electron_positron_energy_difference = constants::INVALID_DOUBLE;
+        electron_positron_energy_sum = constants::INVALID_DOUBLE;
+
+        electron_positron_internal_probability = constants::INVALID_DOUBLE;
+        electron_positron_external_probability = constants::INVALID_DOUBLE;
+
+        electron_positron_vertices_probability = constants::INVALID_DOUBLE;
+
+        electron_positron_angle = constants::INVALID_DOUBLE;
+        electron_positron_cos_angle = constants::INVALID_DOUBLE;
+
+        electron_track_length = constants::INVALID_DOUBLE;
+        electron_track_length = constants::INVALID_DOUBLE;
+        return;
       }
 
       topology_2p::topology_2p ()
@@ -414,6 +429,35 @@ namespace snemo {
           camp::Class::declare< topology_1e1p >("topology_1e1p")
             .tag ("version", 0)
             .constructor0()
+            .property ("electron_energy", &topology_1e1p::electron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("positron_energy", &topology_1e1p::positron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_positron_energy_difference", &topology_1e1p::electron_positron_energy_difference)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_positron_energy_sum", &topology_1e1p::electron_positron_energy_sum)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_positron_internal_probability", &topology_1e1p::electron_positron_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_positron_external_probability", &topology_1e1p::electron_positron_external_probability)
+            .tag ("ctype", "double")
+            .property ("electron_positron_vertices_probability", &topology_1e1p::electron_positron_vertices_probability)
+            .tag ("ctype", "double")
+            .property ("electron_positron_angle", &topology_1e1p::electron_positron_angle)
+            .tag ("ctype", "double")
+            .tag ("unit", "radian")
+            .property ("electron_positron_cos_angle", &topology_1e1p::electron_positron_cos_angle)
+            .tag ("ctype", "double")
+            .property ("electron_track_length", &topology_1e1p::electron_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("positron_track_length", &topology_1e1p::positron_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
             ;
           camp::Class::declare< topology_2p >("topology_2p")
             .tag ("version", 0)
@@ -444,7 +488,7 @@ namespace snemo {
             .constructor0()
             ;
 
-           /*************************************************************************/
+          /*************************************************************************/
 
           camp::Class::declare< export_topology >("export_topology")
             .tag ("version", 0)

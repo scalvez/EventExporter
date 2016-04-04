@@ -380,6 +380,18 @@ namespace snemo {
       const snemo::datamodel::topology_1e1p_pattern & a_1e1p_pattern
         = dynamic_cast<const snemo::datamodel::topology_1e1p_pattern &>(TD.get_pattern());
 
+      et_.grab_1e1p_topology().electron_energy = a_1e1p_pattern.get_electron_energy();
+      et_.grab_1e1p_topology().positron_energy = a_1e1p_pattern.get_positron_energy();
+      et_.grab_1e1p_topology().electron_positron_energy_difference = std::abs(a_1e1p_pattern.get_electron_energy()-a_1e1p_pattern.get_positron_energy());
+      et_.grab_1e1p_topology().electron_positron_energy_sum = a_1e1p_pattern.get_electron_energy()+a_1e1p_pattern.get_positron_energy();
+      et_.grab_1e1p_topology().electron_positron_internal_probability = a_1e1p_pattern.get_electron_positron_internal_probability();
+      et_.grab_1e1p_topology().electron_positron_external_probability = a_1e1p_pattern.get_electron_positron_external_probability();
+      et_.grab_1e1p_topology().electron_positron_vertices_probability = a_1e1p_pattern.get_electron_positron_vertices_probability();
+      et_.grab_1e1p_topology().electron_positron_angle = a_1e1p_pattern.get_electron_positron_angle();
+      et_.grab_1e1p_topology().electron_positron_cos_angle = std::cos(a_1e1p_pattern.get_electron_positron_angle());
+      et_.grab_1e1p_topology().electron_track_length = a_1e1p_pattern.get_electron_track_length();
+      et_.grab_1e1p_topology().positron_track_length = a_1e1p_pattern.get_positron_track_length();
+
       return 0;
     }
 

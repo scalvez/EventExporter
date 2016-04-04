@@ -107,6 +107,21 @@ namespace snemo {
 
     public:
 
+      double electron_energy;
+      double positron_energy;
+      double electron_positron_energy_difference;
+      double electron_positron_energy_sum;
+
+      double electron_positron_internal_probability;
+      double electron_positron_external_probability;
+
+      double electron_positron_vertices_probability;
+      double electron_positron_angle;
+      double electron_positron_cos_angle;
+
+      double electron_track_length;
+      double positron_track_length;
+
     };
 
     struct topology_2p : base_topology
