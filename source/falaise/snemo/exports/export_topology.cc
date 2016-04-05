@@ -112,7 +112,22 @@ namespace snemo {
 
       void topology_2p::reset ()
       {
-          return;
+        positron_minimal_energy = constants::INVALID_DOUBLE;
+        positron_maximal_energy = constants::INVALID_DOUBLE;
+        positrons_energy_difference = constants::INVALID_DOUBLE;
+        positrons_energy_sum = constants::INVALID_DOUBLE;
+
+        positrons_internal_probability = constants::INVALID_DOUBLE;
+        positrons_external_probability = constants::INVALID_DOUBLE;
+
+        positrons_vertices_probability = constants::INVALID_DOUBLE;
+
+        positrons_angle = constants::INVALID_DOUBLE;
+        positrons_cos_angle = constants::INVALID_DOUBLE;
+
+        positron_Emin_track_length = constants::INVALID_DOUBLE;
+        positron_Emax_track_length = constants::INVALID_DOUBLE;
+        return;
       }
 
       topology_1e1g::topology_1e1g ()
@@ -462,6 +477,35 @@ namespace snemo {
           camp::Class::declare< topology_2p >("topology_2p")
             .tag ("version", 0)
             .constructor0()
+            .property ("positron_minimal_energy", &topology_2p::positron_minimal_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("positron_maximal_energy", &topology_2p::positron_maximal_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("positrons_energy_difference", &topology_2p::positrons_energy_difference)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("positrons_energy_sum", &topology_2p::positrons_energy_sum)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("positrons_internal_probability", &topology_2p::positrons_internal_probability)
+            .tag ("ctype", "double")
+            .property ("positrons_external_probability", &topology_2p::positrons_external_probability)
+            .tag ("ctype", "double")
+            .property ("positrons_vertices_probability", &topology_2p::positrons_vertices_probability)
+            .tag ("ctype", "double")
+            .property ("positrons_angle", &topology_2p::positrons_angle)
+            .tag ("ctype", "double")
+            .tag ("unit", "radian")
+            .property ("positrons_cos_angle", &topology_2p::positrons_cos_angle)
+            .tag ("ctype", "double")
+            .property ("positron_Emin_track_length", &topology_2p::positron_Emin_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("positron_Emax_track_length", &topology_2p::positron_Emax_track_length)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
             ;
           camp::Class::declare< topology_1e1g >("topology_1e1g")
             .tag ("version", 0)

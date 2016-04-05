@@ -132,6 +132,21 @@ namespace snemo {
 
     public:
 
+      double positron_minimal_energy;
+      double positron_maximal_energy;
+      double positrons_energy_difference;
+      double positrons_energy_sum;
+
+      double positrons_internal_probability;
+      double positrons_external_probability;
+
+      double positrons_vertices_probability;
+      double positrons_angle;
+      double positrons_cos_angle;
+
+      double positron_Emin_track_length;
+      double positron_Emax_track_length;
+
     };
 
     struct topology_1e1g : base_topology

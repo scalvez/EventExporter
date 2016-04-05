@@ -412,6 +412,44 @@ namespace snemo {
       const snemo::datamodel::topology_2p_pattern & a_2p_pattern
         = dynamic_cast<const snemo::datamodel::topology_2p_pattern &>(TD.get_pattern());
 
+      et_.grab_2p_topology().positron_minimal_energy = a_2p_pattern.get_positron_minimal_energy();
+      et_.grab_2p_topology().positron_maximal_energy = a_2p_pattern.get_positron_maximal_energy();
+      et_.grab_2p_topology().positrons_energy_difference = a_2p_pattern.get_positrons_energy_difference();
+      et_.grab_2p_topology().positrons_energy_sum = a_2p_pattern.get_positrons_energy_sum();
+
+      // if(a_2p_pattern.get_positrons_energy_sum()>4)
+      //   std::cout << "Emin Emax  " << a_2p_pattern.get_positron_minimal_energy() << "  "
+      //             << a_2p_pattern.get_positron_maximal_energy() << std::endl;
+
+      et_.grab_2p_topology().positrons_internal_probability = a_2p_pattern.get_positrons_internal_probability();
+      et_.grab_2p_topology().positrons_external_probability = a_2p_pattern.get_positrons_external_probability();
+
+      et_.grab_2p_topology().positrons_vertices_probability = a_2p_pattern.get_positrons_vertices_probability();
+      et_.grab_2p_topology().positrons_angle = a_2p_pattern.get_positrons_angle();
+      et_.grab_2p_topology().positrons_cos_angle = std::cos(a_2p_pattern.get_positrons_angle());
+
+      double length_Emin = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2p_pattern.get_minimal_energy_positron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2p_pattern.get_minimal_energy_positron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emin = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Positron of minimal energy has no attached trajectory !");
+      }
+      double length_Emax = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2p_pattern.get_maximal_energy_positron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2p_pattern.get_maximal_energy_positron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emax = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Positron of maximal energy has no attached trajectory !");
+      }
+
+      et_.grab_2p_topology().positron_Emin_track_length = length_Emin;
+      et_.grab_2p_topology().positron_Emax_track_length = length_Emax;
+
       return 0;
     }
 
