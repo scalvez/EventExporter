@@ -138,7 +138,13 @@ namespace snemo {
 
       void topology_1e1g::reset ()
       {
-          return;
+        electron_energy = constants::INVALID_DOUBLE;
+        gamma_energy = constants::INVALID_DOUBLE;
+        electron_gamma_energy_sum = constants::INVALID_DOUBLE;
+        electron_gamma_internal_probability = constants::INVALID_DOUBLE;
+        electron_gamma_external_probability = constants::INVALID_DOUBLE;
+
+        return;
       }
 
       topology_1e2g::topology_1e2g ()
@@ -510,6 +516,19 @@ namespace snemo {
           camp::Class::declare< topology_1e1g >("topology_1e1g")
             .tag ("version", 0)
             .constructor0()
+            .property ("electron_energy", &topology_1e1g::electron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("gamma_energy", &topology_1e1g::gamma_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_gamma_energy_sum", &topology_1e1g::electron_gamma_energy_sum)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_gamma_internal_probability", &topology_1e1g::electron_gamma_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_external_probability", &topology_1e1g::electron_gamma_external_probability)
+            .tag ("ctype", "double")
             ;
           camp::Class::declare< topology_1e2g >("topology_1e2g")
             .tag ("version", 0)

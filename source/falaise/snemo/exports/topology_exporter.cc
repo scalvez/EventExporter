@@ -470,6 +470,19 @@ namespace snemo {
       const snemo::datamodel::topology_1eNg_pattern & a_1eNg_pattern
         = dynamic_cast<const snemo::datamodel::topology_1eNg_pattern &>(TD.get_pattern());
 
+      et_.grab_1e1g_topology().electron_energy = a_1eNg_pattern.get_electron_energy();
+      std::vector<double> energies;
+      a_1eNg_pattern.fetch_gammas_energies(energies);
+      et_.grab_1e1g_topology().gamma_energy = energies.at(0);
+      et_.grab_1e1g_topology().electron_gamma_energy_sum = a_1eNg_pattern.get_electron_energy() + energies.at(0);
+      //This choice assumes that the gamma is emitted along with the electron (it does not include events where the gamma can first interact in a block, then with the source to create the electron, and eventually carry on to interact more with the calorimeter)
+      std::vector<std::vector<double> > internal_probabilities;
+      a_1eNg_pattern.fetch_electron_gammas_internal_probabilities(internal_probabilities);
+      et_.grab_1e1g_topology().electron_gamma_internal_probability = internal_probabilities.at(0).front();
+      std::vector<std::vector<double> > external_probabilities;
+      a_1eNg_pattern.fetch_electron_gammas_external_probabilities(external_probabilities);
+      et_.grab_1e1g_topology().electron_gamma_external_probability = external_probabilities.at(0).back();
+
       return 0;
     }
 

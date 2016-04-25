@@ -156,7 +156,11 @@ namespace snemo {
       virtual void reset ();
 
     public:
-
+      double electron_energy;
+      double gamma_energy;
+      double electron_gamma_energy_sum;
+      double electron_gamma_internal_probability;
+      double electron_gamma_external_probability;
     };
 
     struct topology_1e2g : base_topology
@@ -166,6 +170,12 @@ namespace snemo {
       virtual void reset ();
 
     public:
+      double electron_energy;
+      double gamma_min_energy;
+      double gamma_max_energy;
+      double electron_gamma_energy_sum;
+      double electron_gamma_internal_probability;
+      double electron_gamma_external_probability;
 
     };
 
