@@ -173,10 +173,11 @@ namespace snemo {
       double electron_energy;
       double gamma_min_energy;
       double gamma_max_energy;
-      double electron_gamma_energy_sum;
-      double electron_gamma_internal_probability;
-      double electron_gamma_external_probability;
-
+      double electron_gammas_energy_sum;
+      double electron_gamma_min_internal_probability;
+      double electron_gamma_min_external_probability;
+      double electron_gamma_max_internal_probability;
+      double electron_gamma_max_external_probability;
     };
 
     struct topology_1e3g : base_topology
@@ -186,6 +187,17 @@ namespace snemo {
       virtual void reset ();
 
     public:
+      double electron_energy;
+      double gamma_min_energy;
+      double gamma_mid_energy;
+      double gamma_max_energy;
+      double electron_gammas_energy_sum;
+      double electron_gamma_min_internal_probability;
+      double electron_gamma_min_external_probability;
+      double electron_gamma_mid_internal_probability;
+      double electron_gamma_mid_external_probability;
+      double electron_gamma_max_internal_probability;
+      double electron_gamma_max_external_probability;
 
     };
 

@@ -503,6 +503,33 @@ namespace snemo {
       const snemo::datamodel::topology_1eNg_pattern & a_1eNg_pattern
         = dynamic_cast<const snemo::datamodel::topology_1eNg_pattern &>(TD.get_pattern());
 
+      et_.grab_1e2g_topology().electron_energy = a_1eNg_pattern.get_electron_energy();
+      std::vector<double> energies;
+      std::vector<int> energy_rank;
+      a_1eNg_pattern.fetch_gammas_energies(energies);
+      // List of the gamma index by ascending energy
+      if(energies.at(0) < energies.at(1)) {
+        energy_rank.push_back(0);
+        energy_rank.push_back(1);
+      }
+      else {
+        energy_rank.push_back(1);
+        energy_rank.push_back(0);
+      }
+      std::cout << " test debug " << std::endl;
+      et_.grab_1e2g_topology().gamma_min_energy = energies.at(energy_rank.at(0));
+      et_.grab_1e2g_topology().gamma_max_energy = energies.at(energy_rank.at(1));
+      et_.grab_1e2g_topology().electron_gammas_energy_sum = a_1eNg_pattern.get_electron_energy() + energies.at(0) +  energies.at(1);;
+      //This choice assumes that the gamma is emitted along with the electron (it does not include events where the gamma can first interact in a block, then with the source to create the electron, and eventually carry on to interact more with the calorimeter)
+      std::vector<std::vector<double> > internal_probabilities;
+      a_1eNg_pattern.fetch_electron_gammas_internal_probabilities(internal_probabilities);
+      et_.grab_1e2g_topology().electron_gamma_min_internal_probability = internal_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_1e2g_topology().electron_gamma_max_internal_probability = internal_probabilities.at(energy_rank.at(1)).front();
+      std::vector<std::vector<double> > external_probabilities;
+      a_1eNg_pattern.fetch_electron_gammas_external_probabilities(external_probabilities);
+      et_.grab_1e2g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_1e2g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(1)).front();
+
       return 0;
     }
 
@@ -522,6 +549,62 @@ namespace snemo {
 
       const snemo::datamodel::topology_1eNg_pattern & a_1eNg_pattern
         = dynamic_cast<const snemo::datamodel::topology_1eNg_pattern &>(TD.get_pattern());
+
+      et_.grab_1e3g_topology().electron_energy = a_1eNg_pattern.get_electron_energy();
+      std::vector<double> energies;
+      std::vector<int> energy_rank;
+      a_1eNg_pattern.fetch_gammas_energies(energies);
+      // List of the gamma index by ascending energy
+      if(energies.at(0) < energies.at(1)) {
+        if(energies.at(1) < energies.at(2)) {
+          energy_rank.push_back(0);
+          energy_rank.push_back(1);
+          energy_rank.push_back(2);
+        }
+        else if(energies.at(2) < energies.at(0)) {
+          energy_rank.push_back(2);
+          energy_rank.push_back(0);
+          energy_rank.push_back(1);
+        }
+        else {
+          energy_rank.push_back(0);
+          energy_rank.push_back(2);
+          energy_rank.push_back(1);
+        }
+      }
+      else {
+        if(energies.at(0) < energies.at(2)) {
+          energy_rank.push_back(1);
+          energy_rank.push_back(0);
+          energy_rank.push_back(2);
+        }
+        else if(energies.at(2) < energies.at(1)) {
+          energy_rank.push_back(2);
+          energy_rank.push_back(1);
+          energy_rank.push_back(0);
+        }
+        else {
+          energy_rank.push_back(1);
+          energy_rank.push_back(2);
+          energy_rank.push_back(0);
+        }
+      }
+
+      et_.grab_1e3g_topology().gamma_min_energy = energies.at(energy_rank.at(0));
+      et_.grab_1e3g_topology().gamma_mid_energy = energies.at(energy_rank.at(1));
+      et_.grab_1e3g_topology().gamma_max_energy = energies.at(energy_rank.at(2));
+      et_.grab_1e3g_topology().electron_gammas_energy_sum = a_1eNg_pattern.get_electron_energy() + energies.at(0) +  energies.at(1) + energies.at(2);
+      //This choice assumes that the gamma is emitted along with the electron (it does not include events where the gamma can first interact in a block, then with the source to create the electron, and eventually carry on to interact more with the calorimeter)
+      std::vector<std::vector<double> > internal_probabilities;
+      a_1eNg_pattern.fetch_electron_gammas_internal_probabilities(internal_probabilities);
+      et_.grab_1e3g_topology().electron_gamma_min_internal_probability = internal_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_1e3g_topology().electron_gamma_mid_internal_probability = internal_probabilities.at(energy_rank.at(1)).front();
+      et_.grab_1e3g_topology().electron_gamma_max_internal_probability = internal_probabilities.at(energy_rank.at(2)).front();
+      std::vector<std::vector<double> > external_probabilities;
+      a_1eNg_pattern.fetch_electron_gammas_external_probabilities(external_probabilities);
+      et_.grab_1e3g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_1e3g_topology().electron_gamma_mid_external_probability = external_probabilities.at(energy_rank.at(1)).front();
+      et_.grab_1e3g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(2)).front();
 
       return 0;
     }

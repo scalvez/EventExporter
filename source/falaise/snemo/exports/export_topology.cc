@@ -155,7 +155,15 @@ namespace snemo {
 
       void topology_1e2g::reset ()
       {
-          return;
+        electron_energy = constants::INVALID_DOUBLE;
+        gamma_min_energy = constants::INVALID_DOUBLE;
+        gamma_max_energy = constants::INVALID_DOUBLE;
+        electron_gammas_energy_sum = constants::INVALID_DOUBLE;
+        electron_gamma_min_internal_probability = constants::INVALID_DOUBLE;
+        electron_gamma_min_external_probability = constants::INVALID_DOUBLE;
+        electron_gamma_max_internal_probability = constants::INVALID_DOUBLE;
+        electron_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        return;
       }
 
       topology_1e3g::topology_1e3g ()
@@ -166,7 +174,18 @@ namespace snemo {
 
       void topology_1e3g::reset ()
       {
-          return;
+        electron_energy = constants::INVALID_DOUBLE;
+        gamma_min_energy = constants::INVALID_DOUBLE;
+        gamma_mid_energy = constants::INVALID_DOUBLE;
+        gamma_max_energy = constants::INVALID_DOUBLE;
+        electron_gammas_energy_sum = constants::INVALID_DOUBLE;
+        electron_gamma_min_internal_probability = constants::INVALID_DOUBLE;
+        electron_gamma_min_external_probability = constants::INVALID_DOUBLE;
+        electron_gamma_mid_internal_probability = constants::INVALID_DOUBLE;
+        electron_gamma_mid_external_probability = constants::INVALID_DOUBLE;
+        electron_gamma_max_internal_probability = constants::INVALID_DOUBLE;
+        electron_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        return;
       }
 
       topology_2e1g::topology_2e1g ()
@@ -533,10 +552,57 @@ namespace snemo {
           camp::Class::declare< topology_1e2g >("topology_1e2g")
             .tag ("version", 0)
             .constructor0()
+            .property ("electron_energy", &topology_1e2g::electron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("gamma_min_energy", &topology_1e2g::gamma_min_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("gamma_max_energy", &topology_1e2g::gamma_max_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_gammas_energy_sum", &topology_1e2g::electron_gammas_energy_sum)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_gamma_min_internal_probability", &topology_1e2g::electron_gamma_min_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_min_external_probability", &topology_1e2g::electron_gamma_min_external_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_max_internal_probability", &topology_1e2g::electron_gamma_max_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_max_external_probability", &topology_1e2g::electron_gamma_max_external_probability)
+            .tag ("ctype", "double")
             ;
           camp::Class::declare< topology_1e3g >("topology_1e3g")
             .tag ("version", 0)
             .constructor0()
+            .property ("electron_energy", &topology_1e3g::electron_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("gamma_min_energy", &topology_1e3g::gamma_min_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("gamma_mid_energy", &topology_1e3g::gamma_mid_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("gamma_max_energy", &topology_1e3g::gamma_max_energy)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_gammas_energy_sum", &topology_1e3g::electron_gammas_energy_sum)
+            .tag ("ctype", "double")
+            .tag ("unit", "MeV")
+            .property ("electron_gamma_min_internal_probability", &topology_1e3g::electron_gamma_min_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_min_external_probability", &topology_1e3g::electron_gamma_min_external_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_mid_internal_probability", &topology_1e3g::electron_gamma_mid_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_mid_external_probability", &topology_1e3g::electron_gamma_mid_external_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_max_internal_probability", &topology_1e3g::electron_gamma_max_internal_probability)
+            .tag ("ctype", "double")
+            .property ("electron_gamma_max_external_probability", &topology_1e3g::electron_gamma_max_external_probability)
+            .tag ("ctype", "double")
             ;
           camp::Class::declare< topology_2e1g >("topology_2e1g")
             .tag ("version", 0)
