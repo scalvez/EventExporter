@@ -208,6 +208,26 @@ namespace snemo {
       virtual void reset ();
 
     public:
+      double electron_minimal_energy;
+      double electron_maximal_energy;
+      double gamma_energy;
+      double electrons_energy_difference;
+      double electrons_energy_sum;
+      double electrons_gammas_energy_sum;
+
+      double electrons_internal_probability;
+      double electrons_external_probability;
+      double electron_min_gamma_internal_probability;
+      double electron_min_gamma_external_probability;
+      double electron_max_gamma_internal_probability;
+      double electron_max_gamma_external_probability;
+
+      double electrons_vertices_probability;
+      double electrons_angle;
+      double electrons_cos_angle;
+
+      double electron_Emin_track_length;
+      double electron_Emax_track_length;
 
     };
 
@@ -218,6 +238,31 @@ namespace snemo {
       virtual void reset ();
 
     public:
+      double electron_minimal_energy;
+      double electron_maximal_energy;
+      double gamma_min_energy;
+      double gamma_max_energy;
+      double electrons_energy_difference;
+      double electrons_energy_sum;
+      double electrons_gammas_energy_sum;
+
+      double electrons_internal_probability;
+      double electrons_external_probability;
+      double electron_min_gamma_min_internal_probability;
+      double electron_min_gamma_max_internal_probability;
+      double electron_min_gamma_min_external_probability;
+      double electron_min_gamma_max_external_probability;
+      double electron_max_gamma_min_internal_probability;
+      double electron_max_gamma_max_internal_probability;
+      double electron_max_gamma_min_external_probability;
+      double electron_max_gamma_max_external_probability;
+
+      double electrons_vertices_probability;
+      double electrons_angle;
+      double electrons_cos_angle;
+
+      double electron_Emin_track_length;
+      double electron_Emax_track_length;
 
     };
 
@@ -228,6 +273,36 @@ namespace snemo {
       virtual void reset ();
 
     public:
+      double electron_minimal_energy;
+      double electron_maximal_energy;
+      double gamma_min_energy;
+      double gamma_mid_energy;
+      double gamma_max_energy;
+      double electrons_energy_difference;
+      double electrons_energy_sum;
+      double electrons_gammas_energy_sum;
+
+      double electrons_internal_probability;
+      double electrons_external_probability;
+      double electron_min_gamma_min_internal_probability;
+      double electron_min_gamma_min_external_probability;
+      double electron_min_gamma_mid_internal_probability;
+      double electron_min_gamma_mid_external_probability;
+      double electron_min_gamma_max_internal_probability;
+      double electron_min_gamma_max_external_probability;
+      double electron_max_gamma_min_internal_probability;
+      double electron_max_gamma_min_external_probability;
+      double electron_max_gamma_mid_internal_probability;
+      double electron_max_gamma_mid_external_probability;
+      double electron_max_gamma_max_internal_probability;
+      double electron_max_gamma_max_external_probability;
+
+      double electrons_vertices_probability;
+      double electrons_angle;
+      double electrons_cos_angle;
+
+      double electron_Emin_track_length;
+      double electron_Emax_track_length;
 
     };
 

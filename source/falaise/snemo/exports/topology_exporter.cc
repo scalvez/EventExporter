@@ -516,10 +516,10 @@ namespace snemo {
         energy_rank.push_back(1);
         energy_rank.push_back(0);
       }
-      std::cout << " test debug " << std::endl;
+
       et_.grab_1e2g_topology().gamma_min_energy = energies.at(energy_rank.at(0));
       et_.grab_1e2g_topology().gamma_max_energy = energies.at(energy_rank.at(1));
-      et_.grab_1e2g_topology().electron_gammas_energy_sum = a_1eNg_pattern.get_electron_energy() + energies.at(0) +  energies.at(1);;
+      et_.grab_1e2g_topology().electron_gammas_energy_sum = a_1eNg_pattern.get_electron_energy() + energies.at(0) +  energies.at(1);
       //This choice assumes that the gamma is emitted along with the electron (it does not include events where the gamma can first interact in a block, then with the source to create the electron, and eventually carry on to interact more with the calorimeter)
       std::vector<std::vector<double> > internal_probabilities;
       a_1eNg_pattern.fetch_electron_gammas_internal_probabilities(internal_probabilities);
@@ -527,8 +527,8 @@ namespace snemo {
       et_.grab_1e2g_topology().electron_gamma_max_internal_probability = internal_probabilities.at(energy_rank.at(1)).front();
       std::vector<std::vector<double> > external_probabilities;
       a_1eNg_pattern.fetch_electron_gammas_external_probabilities(external_probabilities);
-      et_.grab_1e2g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).front();
-      et_.grab_1e2g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(1)).front();
+      et_.grab_1e2g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).back();
+      et_.grab_1e2g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(1)).back();
 
       return 0;
     }
@@ -602,9 +602,9 @@ namespace snemo {
       et_.grab_1e3g_topology().electron_gamma_max_internal_probability = internal_probabilities.at(energy_rank.at(2)).front();
       std::vector<std::vector<double> > external_probabilities;
       a_1eNg_pattern.fetch_electron_gammas_external_probabilities(external_probabilities);
-      et_.grab_1e3g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).front();
-      et_.grab_1e3g_topology().electron_gamma_mid_external_probability = external_probabilities.at(energy_rank.at(1)).front();
-      et_.grab_1e3g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(2)).front();
+      et_.grab_1e3g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).back();
+      et_.grab_1e3g_topology().electron_gamma_mid_external_probability = external_probabilities.at(energy_rank.at(1)).back();
+      et_.grab_1e3g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(2)).back();
 
       return 0;
     }
@@ -627,6 +627,62 @@ namespace snemo {
       const snemo::datamodel::topology_2eNg_pattern & a_2eNg_pattern
         = dynamic_cast<const snemo::datamodel::topology_2eNg_pattern &>(TD.get_pattern());
 
+      et_.grab_2e1g_topology().electron_minimal_energy = a_2eNg_pattern.get_electron_minimal_energy();
+      et_.grab_2e1g_topology().electron_maximal_energy = a_2eNg_pattern.get_electron_maximal_energy();
+
+      std::vector<double> energies;
+      a_2eNg_pattern.fetch_gammas_energies(energies);
+      et_.grab_2e1g_topology().gamma_energy = energies.at(0);
+
+      et_.grab_2e1g_topology().electrons_energy_difference = a_2eNg_pattern.get_electrons_energy_difference();
+      et_.grab_2e1g_topology().electrons_energy_sum = a_2eNg_pattern.get_electrons_energy_sum();
+      et_.grab_2e1g_topology().electrons_gammas_energy_sum = a_2eNg_pattern.get_electrons_energy_sum() + energies.at(0);
+
+      // if(a_2eNg_pattern.get_electrons_energy_sum()>4)
+      //   std::cout << "Emin Emax  " << a_2eNg_pattern.get_electron_minimal_energy() << "  "
+      //             << a_2eNg_pattern.get_electron_maximal_energy() << std::endl;
+
+      et_.grab_2e1g_topology().electrons_internal_probability = a_2eNg_pattern.get_electrons_internal_probability();
+      et_.grab_2e1g_topology().electrons_external_probability = a_2eNg_pattern.get_electrons_external_probability();
+      std::vector<std::vector<double> > e_min_internal_probabilities;
+      a_2eNg_pattern.fetch_electron_min_gammas_internal_probabilities(e_min_internal_probabilities);
+      et_.grab_2e1g_topology().electron_min_gamma_internal_probability = e_min_internal_probabilities.at(0).front();
+      std::vector<std::vector<double> > e_min_external_probabilities;
+      a_2eNg_pattern.fetch_electron_min_gammas_external_probabilities(e_min_external_probabilities);
+      et_.grab_2e1g_topology().electron_min_gamma_external_probability = e_min_external_probabilities.at(0).back();
+      std::vector<std::vector<double> > e_max_internal_probabilities;
+      a_2eNg_pattern.fetch_electron_max_gammas_internal_probabilities(e_max_internal_probabilities);
+      et_.grab_2e1g_topology().electron_max_gamma_internal_probability = e_max_internal_probabilities.at(0).front();
+      std::vector<std::vector<double> > e_max_external_probabilities;
+      a_2eNg_pattern.fetch_electron_max_gammas_external_probabilities(e_max_external_probabilities);
+      et_.grab_2e1g_topology().electron_max_gamma_external_probability = e_max_external_probabilities.at(0).back();
+
+      et_.grab_2e1g_topology().electrons_vertices_probability = a_2eNg_pattern.get_electrons_vertices_probability();
+      et_.grab_2e1g_topology().electrons_angle = a_2eNg_pattern.get_electrons_angle();
+      et_.grab_2e1g_topology().electrons_cos_angle = std::cos(a_2eNg_pattern.get_electrons_angle());
+
+      double length_Emin = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2eNg_pattern.get_minimal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2eNg_pattern.get_minimal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emin = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of minimal energy has no attached trajectory !");
+      }
+      double length_Emax = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2eNg_pattern.get_maximal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2eNg_pattern.get_maximal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emax = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of maximal energy has no attached trajectory !");
+      }
+
+      et_.grab_2e1g_topology().electron_Emin_track_length = length_Emin;
+      et_.grab_2e1g_topology().electron_Emax_track_length = length_Emax;
+
       return 0;
     }
 
@@ -647,6 +703,83 @@ namespace snemo {
       const snemo::datamodel::topology_2eNg_pattern & a_2eNg_pattern
         = dynamic_cast<const snemo::datamodel::topology_2eNg_pattern &>(TD.get_pattern());
 
+      et_.grab_2e2g_topology().electron_minimal_energy = a_2eNg_pattern.get_electron_minimal_energy();
+      et_.grab_2e2g_topology().electron_maximal_energy = a_2eNg_pattern.get_electron_maximal_energy();
+
+      std::vector<double> energies;
+      std::vector<int> energy_rank;
+      a_2eNg_pattern.fetch_gammas_energies(energies);
+      // List of the gamma index by ascending energy
+      if(energies.at(0) < energies.at(1)) {
+        energy_rank.push_back(0);
+        energy_rank.push_back(1);
+      }
+      else {
+        energy_rank.push_back(1);
+        energy_rank.push_back(0);
+      }
+
+      et_.grab_2e2g_topology().gamma_min_energy = energies.at(energy_rank.at(0));
+      et_.grab_2e2g_topology().gamma_max_energy = energies.at(energy_rank.at(1));
+
+      et_.grab_2e2g_topology().electrons_energy_difference = a_2eNg_pattern.get_electrons_energy_difference();
+      et_.grab_2e2g_topology().electrons_energy_sum = a_2eNg_pattern.get_electrons_energy_sum();
+      et_.grab_2e2g_topology().electrons_gammas_energy_sum = a_2eNg_pattern.get_electrons_energy_sum() + energies.at(0) + energies.at(1);
+
+      // if(a_2eNg_pattern.get_electrons_energy_sum()>4)
+      //   std::cout << "Emin Emax  " << a_2eNg_pattern.get_electron_minimal_energy() << "  "
+      //             << a_2eNg_pattern.get_electron_maximal_energy() << std::endl;
+
+      et_.grab_2e2g_topology().electrons_internal_probability = a_2eNg_pattern.get_electrons_internal_probability();
+      et_.grab_2e2g_topology().electrons_external_probability = a_2eNg_pattern.get_electrons_external_probability();
+      std::vector<std::vector<double> > e_min_internal_probabilities;
+      a_2eNg_pattern.fetch_electron_min_gammas_internal_probabilities(e_min_internal_probabilities);
+
+      et_.grab_2e2g_topology().electron_min_gamma_min_internal_probability = e_min_internal_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_2e2g_topology().electron_min_gamma_max_internal_probability = e_min_internal_probabilities.at(energy_rank.at(1)).front();
+
+      std::vector<std::vector<double> > e_min_external_probabilities;
+      a_2eNg_pattern.fetch_electron_min_gammas_external_probabilities(e_min_external_probabilities);
+      et_.grab_2e2g_topology().electron_min_gamma_min_external_probability = e_min_external_probabilities.at(energy_rank.at(0)).back();
+      et_.grab_2e2g_topology().electron_min_gamma_max_external_probability = e_min_external_probabilities.at(energy_rank.at(1)).back();
+
+      std::vector<std::vector<double> > e_max_internal_probabilities;
+      a_2eNg_pattern.fetch_electron_max_gammas_internal_probabilities(e_max_internal_probabilities);
+
+      et_.grab_2e2g_topology().electron_max_gamma_min_internal_probability = e_max_internal_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_2e2g_topology().electron_max_gamma_max_internal_probability = e_max_internal_probabilities.at(energy_rank.at(1)).front();
+
+      std::vector<std::vector<double> > e_max_external_probabilities;
+      a_2eNg_pattern.fetch_electron_max_gammas_external_probabilities(e_max_external_probabilities);
+      et_.grab_2e2g_topology().electron_max_gamma_min_external_probability = e_max_external_probabilities.at(energy_rank.at(0)).back();
+      et_.grab_2e2g_topology().electron_max_gamma_max_external_probability = e_max_external_probabilities.at(energy_rank.at(1)).back();
+
+      et_.grab_2e2g_topology().electrons_vertices_probability = a_2eNg_pattern.get_electrons_vertices_probability();
+      et_.grab_2e2g_topology().electrons_angle = a_2eNg_pattern.get_electrons_angle();
+      et_.grab_2e2g_topology().electrons_cos_angle = std::cos(a_2eNg_pattern.get_electrons_angle());
+
+      double length_Emin = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2eNg_pattern.get_minimal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2eNg_pattern.get_minimal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emin = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of minimal energy has no attached trajectory !");
+      }
+      double length_Emax = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2eNg_pattern.get_maximal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2eNg_pattern.get_maximal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emax = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of maximal energy has no attached trajectory !");
+      }
+
+      et_.grab_2e2g_topology().electron_Emin_track_length = length_Emin;
+      et_.grab_2e2g_topology().electron_Emax_track_length = length_Emax;
+
       return 0;
     }
 
@@ -666,6 +799,114 @@ namespace snemo {
 
       const snemo::datamodel::topology_2eNg_pattern & a_2eNg_pattern
         = dynamic_cast<const snemo::datamodel::topology_2eNg_pattern &>(TD.get_pattern());
+
+      et_.grab_2e3g_topology().electron_minimal_energy = a_2eNg_pattern.get_electron_minimal_energy();
+      et_.grab_2e3g_topology().electron_maximal_energy = a_2eNg_pattern.get_electron_maximal_energy();
+
+      std::vector<double> energies;
+      std::vector<int> energy_rank;
+      a_2eNg_pattern.fetch_gammas_energies(energies);
+      // List of the gamma index by ascending energy
+      if(energies.at(0) < energies.at(1)) {
+        if(energies.at(1) < energies.at(2)) {
+          energy_rank.push_back(0);
+          energy_rank.push_back(1);
+          energy_rank.push_back(2);
+        }
+        else if(energies.at(2) < energies.at(0)) {
+          energy_rank.push_back(2);
+          energy_rank.push_back(0);
+          energy_rank.push_back(1);
+        }
+        else {
+          energy_rank.push_back(0);
+          energy_rank.push_back(2);
+          energy_rank.push_back(1);
+        }
+      }
+      else {
+        if(energies.at(0) < energies.at(2)) {
+          energy_rank.push_back(1);
+          energy_rank.push_back(0);
+          energy_rank.push_back(2);
+        }
+        else if(energies.at(2) < energies.at(1)) {
+          energy_rank.push_back(2);
+          energy_rank.push_back(1);
+          energy_rank.push_back(0);
+        }
+        else {
+          energy_rank.push_back(1);
+          energy_rank.push_back(2);
+          energy_rank.push_back(0);
+        }
+      }
+
+      et_.grab_2e3g_topology().gamma_min_energy = energies.at(energy_rank.at(0));
+      et_.grab_2e3g_topology().gamma_mid_energy = energies.at(energy_rank.at(1));
+      et_.grab_2e3g_topology().gamma_max_energy = energies.at(energy_rank.at(2));
+
+      et_.grab_2e3g_topology().electrons_energy_difference = a_2eNg_pattern.get_electrons_energy_difference();
+      et_.grab_2e3g_topology().electrons_energy_sum = a_2eNg_pattern.get_electrons_energy_sum();
+      et_.grab_2e3g_topology().electrons_gammas_energy_sum = a_2eNg_pattern.get_electrons_energy_sum() + energies.at(0) + energies.at(1) + energies.at(2);
+
+      // if(a_2eNg_pattern.get_electrons_energy_sum()>4)
+      //   std::cout << "Emin Emax  " << a_2eNg_pattern.get_electron_minimal_energy() << "  "
+      //             << a_2eNg_pattern.get_electron_maximal_energy() << std::endl;
+
+      et_.grab_2e3g_topology().electrons_internal_probability = a_2eNg_pattern.get_electrons_internal_probability();
+      et_.grab_2e3g_topology().electrons_external_probability = a_2eNg_pattern.get_electrons_external_probability();
+      std::vector<std::vector<double> > e_min_internal_probabilities;
+      a_2eNg_pattern.fetch_electron_min_gammas_internal_probabilities(e_min_internal_probabilities);
+
+      et_.grab_2e3g_topology().electron_min_gamma_min_internal_probability = e_min_internal_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_2e3g_topology().electron_min_gamma_mid_internal_probability = e_min_internal_probabilities.at(energy_rank.at(1)).front();
+      et_.grab_2e3g_topology().electron_min_gamma_max_internal_probability = e_min_internal_probabilities.at(energy_rank.at(2)).front();
+
+      std::vector<std::vector<double> > e_min_external_probabilities;
+      a_2eNg_pattern.fetch_electron_min_gammas_external_probabilities(e_min_external_probabilities);
+      et_.grab_2e3g_topology().electron_min_gamma_min_external_probability = e_min_external_probabilities.at(energy_rank.at(0)).back();
+      et_.grab_2e3g_topology().electron_min_gamma_mid_external_probability = e_min_external_probabilities.at(energy_rank.at(1)).back();
+      et_.grab_2e3g_topology().electron_min_gamma_max_external_probability = e_min_external_probabilities.at(energy_rank.at(2)).back();
+
+      std::vector<std::vector<double> > e_max_internal_probabilities;
+      a_2eNg_pattern.fetch_electron_max_gammas_internal_probabilities(e_max_internal_probabilities);
+
+      et_.grab_2e3g_topology().electron_max_gamma_min_internal_probability = e_max_internal_probabilities.at(energy_rank.at(0)).front();
+      et_.grab_2e3g_topology().electron_max_gamma_mid_internal_probability = e_max_internal_probabilities.at(energy_rank.at(1)).front();
+      et_.grab_2e3g_topology().electron_max_gamma_max_internal_probability = e_max_internal_probabilities.at(energy_rank.at(2)).front();
+
+      std::vector<std::vector<double> > e_max_external_probabilities;
+      a_2eNg_pattern.fetch_electron_max_gammas_external_probabilities(e_max_external_probabilities);
+      et_.grab_2e3g_topology().electron_max_gamma_min_external_probability = e_max_external_probabilities.at(energy_rank.at(0)).back();
+      et_.grab_2e3g_topology().electron_max_gamma_mid_external_probability = e_max_external_probabilities.at(energy_rank.at(1)).back();
+      et_.grab_2e3g_topology().electron_max_gamma_max_external_probability = e_max_external_probabilities.at(energy_rank.at(2)).back();
+
+      et_.grab_2e3g_topology().electrons_vertices_probability = a_2eNg_pattern.get_electrons_vertices_probability();
+      et_.grab_2e3g_topology().electrons_angle = a_2eNg_pattern.get_electrons_angle();
+      et_.grab_2e3g_topology().electrons_cos_angle = std::cos(a_2eNg_pattern.get_electrons_angle());
+
+      double length_Emin = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2eNg_pattern.get_minimal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2eNg_pattern.get_minimal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emin = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of minimal energy has no attached trajectory !");
+      }
+      double length_Emax = datatools::invalid_real();
+      if (TD.get_pattern().get_particle_track(a_2eNg_pattern.get_maximal_energy_electron_name()).has_trajectory()) {
+        const snemo::datamodel::tracker_trajectory & a_trajectory =
+          TD.get_pattern().get_particle_track(a_2eNg_pattern.get_maximal_energy_electron_name()).get_trajectory();
+        const snemo::datamodel::base_trajectory_pattern & a_track_pattern = a_trajectory.get_pattern();
+        length_Emax = a_track_pattern.get_shape().get_length();
+      } else {
+        DT_THROW_IF(true,std::logic_error,"Electron of maximal energy has no attached trajectory !");
+      }
+
+      et_.grab_2e3g_topology().electron_Emin_track_length = length_Emin;
+      et_.grab_2e3g_topology().electron_Emax_track_length = length_Emax;
 
       return 0;
     }
