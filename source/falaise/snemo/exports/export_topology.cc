@@ -196,7 +196,24 @@ namespace snemo {
 
       void topology_2e1g::reset ()
       {
-          return;
+        electron_minimal_energy = constants::INVALID_DOUBLE;
+        electron_maximal_energy = constants::INVALID_DOUBLE;
+        gamma_energy = constants::INVALID_DOUBLE;
+        electrons_energy_difference = constants::INVALID_DOUBLE;
+        electrons_energy_sum = constants::INVALID_DOUBLE;
+        electrons_gammas_energy_sum = constants::INVALID_DOUBLE;
+        electrons_internal_probability = constants::INVALID_DOUBLE;
+        electrons_external_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_internal_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_external_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_internal_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_external_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_angle = constants::INVALID_DOUBLE;
+        electrons_cos_angle = constants::INVALID_DOUBLE;
+        electron_Emin_track_length = constants::INVALID_DOUBLE;
+        electron_Emax_track_length = constants::INVALID_DOUBLE;
+        return;
       }
 
       topology_2e2g::topology_2e2g ()
@@ -207,7 +224,29 @@ namespace snemo {
 
       void topology_2e2g::reset ()
       {
-          return;
+        electron_minimal_energy = constants::INVALID_DOUBLE;
+        electron_maximal_energy = constants::INVALID_DOUBLE;
+        gamma_min_energy = constants::INVALID_DOUBLE;
+        gamma_max_energy = constants::INVALID_DOUBLE;
+        electrons_energy_difference = constants::INVALID_DOUBLE;
+        electrons_energy_sum = constants::INVALID_DOUBLE;
+        electrons_gammas_energy_sum = constants::INVALID_DOUBLE;
+        electrons_internal_probability = constants::INVALID_DOUBLE;
+        electrons_external_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_min_internal_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_max_internal_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_min_external_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_min_internal_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_max_internal_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_min_external_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_angle = constants::INVALID_DOUBLE;
+        electrons_cos_angle = constants::INVALID_DOUBLE;
+        electron_Emin_track_length = constants::INVALID_DOUBLE;
+        electron_Emax_track_length = constants::INVALID_DOUBLE;
+        return;
       }
 
       topology_2e3g::topology_2e3g ()
@@ -218,7 +257,34 @@ namespace snemo {
 
       void topology_2e3g::reset ()
       {
-          return;
+        electron_minimal_energy = constants::INVALID_DOUBLE;
+        electron_maximal_energy = constants::INVALID_DOUBLE;
+        gamma_min_energy = constants::INVALID_DOUBLE;
+        gamma_mid_energy = constants::INVALID_DOUBLE;
+        gamma_max_energy = constants::INVALID_DOUBLE;
+        electrons_energy_difference = constants::INVALID_DOUBLE;
+        electrons_energy_sum = constants::INVALID_DOUBLE;
+        electrons_gammas_energy_sum = constants::INVALID_DOUBLE;
+        electrons_internal_probability = constants::INVALID_DOUBLE;
+        electrons_external_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_min_internal_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_min_external_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_mid_internal_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_mid_external_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_max_internal_probability = constants::INVALID_DOUBLE;
+        electron_min_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_min_internal_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_min_external_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_mid_internal_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_mid_external_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_max_internal_probability = constants::INVALID_DOUBLE;
+        electron_max_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_angle = constants::INVALID_DOUBLE;
+        electrons_cos_angle = constants::INVALID_DOUBLE;
+        electron_Emin_track_length = constants::INVALID_DOUBLE;
+        electron_Emax_track_length = constants::INVALID_DOUBLE;
+        return;
       }
 
       /***********************************************/
