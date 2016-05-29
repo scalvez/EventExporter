@@ -100,7 +100,7 @@ namespace snemo {
         electron_positron_cos_angle = constants::INVALID_DOUBLE;
 
         electron_track_length = constants::INVALID_DOUBLE;
-        electron_track_length = constants::INVALID_DOUBLE;
+        positron_track_length = constants::INVALID_DOUBLE;
         return;
       }
 
