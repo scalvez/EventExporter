@@ -9,9 +9,9 @@ project(FalaiseEventExporterPlugin)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Ensure our code can see the Falaise headers
-#include_directories(${Falaise_INCLUDE_DIRS})
-include_directories(${Falaise_BUILDPRODUCT_DIR}/include)
-include_directories(${Falaise_BUILDPRODUCT_DIR}/include/falaise)
+#include_directories(${FALAISE_INCLUDE_DIRS})
+include_directories(${FALAISE_BUILDPRODUCT_DIR}/include)
+include_directories(${FALAISE_BUILDPRODUCT_DIR}/include/falaise)
 include_directories(${Bayeux_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/source)
@@ -67,7 +67,7 @@ install(TARGETS Falaise_EventExporter DESTINATION ${CMAKE_INSTALL_LIBDIR}/Falais
 # - Publish headers
 foreach(_hdrin ${FalaiseEventExporterPlugin_HEADERS})
   string(REGEX REPLACE "source/falaise/" "" _hdrout "${_hdrin}")
-  configure_file(${_hdrin} ${Falaise_BUILDPRODUCT_DIR}/include/falaise/${_hdrout} @ONLY)
+  configure_file(${_hdrin} ${FALAISE_BUILDPRODUCT_DIR}/include/falaise/${_hdrout} @ONLY)
 endforeach()
 
 # Test support:
