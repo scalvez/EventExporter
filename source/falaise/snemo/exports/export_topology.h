@@ -92,6 +92,10 @@ namespace snemo {
       double electrons_external_probability;
 
       double electrons_vertices_probability;
+      double electrons_vertices_distance_x;
+      double electrons_vertices_distance_y;
+      double electrons_vertices_distance_z;
+
       double electrons_angle;
       double electrons_cos_angle;
 

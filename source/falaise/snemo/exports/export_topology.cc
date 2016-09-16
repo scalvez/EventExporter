@@ -68,6 +68,9 @@ namespace snemo {
         electrons_external_probability = constants::INVALID_DOUBLE;
 
         electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_x = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_y = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_z = constants::INVALID_DOUBLE;
 
         electrons_angle = constants::INVALID_DOUBLE;
         electrons_cos_angle = constants::INVALID_DOUBLE;
@@ -519,6 +522,12 @@ namespace snemo {
             .property ("electrons_external_probability", &topology_2e::electrons_external_probability)
             .tag ("ctype", "double")
             .property ("electrons_vertices_probability", &topology_2e::electrons_vertices_probability)
+            .tag ("ctype", "double")
+            .property ("electrons_vertices_distance_x", &topology_2e::electrons_vertices_distance_x)
+            .tag ("ctype", "double")
+            .property ("electrons_vertices_distance_y", &topology_2e::electrons_vertices_distance_y)
+            .tag ("ctype", "double")
+            .property ("electrons_vertices_distance_z", &topology_2e::electrons_vertices_distance_z)
             .tag ("ctype", "double")
             .property ("electrons_angle", &topology_2e::electrons_angle)
             .tag ("ctype", "double")
