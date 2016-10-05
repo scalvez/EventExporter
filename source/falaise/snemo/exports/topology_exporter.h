@@ -32,6 +32,19 @@
 #include <falaise/snemo/datamodels/data_model.h>
 #include <falaise/snemo/exports/base_data_bank_exporter.h>
 
+#include <falaise/snemo/datamodels/particle_track.h>
+
+namespace export_tools {
+  const  std::map<std::string,double> location_to_index = {
+    {snemo::datamodel::particle_track::vertex_on_source_foil_label(),0},
+    {snemo::datamodel::particle_track::vertex_on_wire_label(),1},
+    {snemo::datamodel::particle_track::vertex_on_main_calorimeter_label(),2},
+    {snemo::datamodel::particle_track::vertex_on_x_calorimeter_label(),3},
+    {snemo::datamodel::particle_track::vertex_on_gamma_veto_label(),4},
+    {snemo::datamodel::particle_track::vertex_none_label(),5}
+  };
+}
+
 namespace geomtools {
   class manager;
 }

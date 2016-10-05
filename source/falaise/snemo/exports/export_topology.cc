@@ -28,6 +28,7 @@ namespace snemo {
         electron_energy = constants::INVALID_DOUBLE;
         electron_angle = constants::INVALID_DOUBLE;
         electron_track_length = constants::INVALID_DOUBLE;
+        electron_vertex_location = constants::INVALID_DOUBLE;
         return;
       }
 
@@ -46,6 +47,10 @@ namespace snemo {
         alpha_track_length = constants::INVALID_DOUBLE;
         electron_alpha_angle = constants::INVALID_DOUBLE;
         electron_alpha_vertices_probability = constants::INVALID_DOUBLE;
+        electron_alpha_vertices_distance_x = constants::INVALID_DOUBLE;
+        electron_alpha_vertices_distance_y = constants::INVALID_DOUBLE;
+        electron_alpha_vertices_distance_z = constants::INVALID_DOUBLE;
+        electron_alpha_vertex_location = constants::INVALID_DOUBLE;
         alpha_delayed_time = constants::INVALID_DOUBLE;
 
         return;
@@ -71,6 +76,7 @@ namespace snemo {
         electrons_vertices_distance_x = constants::INVALID_DOUBLE;
         electrons_vertices_distance_y = constants::INVALID_DOUBLE;
         electrons_vertices_distance_z = constants::INVALID_DOUBLE;
+        electrons_vertex_location = constants::INVALID_DOUBLE;
 
         electrons_angle = constants::INVALID_DOUBLE;
         electrons_cos_angle = constants::INVALID_DOUBLE;
@@ -98,6 +104,10 @@ namespace snemo {
         electron_positron_external_probability = constants::INVALID_DOUBLE;
 
         electron_positron_vertices_probability = constants::INVALID_DOUBLE;
+        electron_positron_vertices_distance_x = constants::INVALID_DOUBLE;
+        electron_positron_vertices_distance_y = constants::INVALID_DOUBLE;
+        electron_positron_vertices_distance_z = constants::INVALID_DOUBLE;
+        electron_positron_vertex_location = constants::INVALID_DOUBLE;
 
         electron_positron_angle = constants::INVALID_DOUBLE;
         electron_positron_cos_angle = constants::INVALID_DOUBLE;
@@ -124,6 +134,10 @@ namespace snemo {
         positrons_external_probability = constants::INVALID_DOUBLE;
 
         positrons_vertices_probability = constants::INVALID_DOUBLE;
+        positrons_vertices_distance_x = constants::INVALID_DOUBLE;
+        positrons_vertices_distance_y = constants::INVALID_DOUBLE;
+        positrons_vertices_distance_z = constants::INVALID_DOUBLE;
+        positrons_vertex_location = constants::INVALID_DOUBLE;
 
         positrons_angle = constants::INVALID_DOUBLE;
         positrons_cos_angle = constants::INVALID_DOUBLE;
@@ -212,6 +226,10 @@ namespace snemo {
         electron_max_gamma_internal_probability = constants::INVALID_DOUBLE;
         electron_max_gamma_external_probability = constants::INVALID_DOUBLE;
         electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_x = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_y = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_z = constants::INVALID_DOUBLE;
+        electrons_vertex_location = constants::INVALID_DOUBLE;
         electrons_angle = constants::INVALID_DOUBLE;
         electrons_cos_angle = constants::INVALID_DOUBLE;
         electron_Emin_track_length = constants::INVALID_DOUBLE;
@@ -245,6 +263,10 @@ namespace snemo {
         electron_max_gamma_min_external_probability = constants::INVALID_DOUBLE;
         electron_max_gamma_max_external_probability = constants::INVALID_DOUBLE;
         electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_x = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_y = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_z = constants::INVALID_DOUBLE;
+        electrons_vertex_location = constants::INVALID_DOUBLE;
         electrons_angle = constants::INVALID_DOUBLE;
         electrons_cos_angle = constants::INVALID_DOUBLE;
         electron_Emin_track_length = constants::INVALID_DOUBLE;
@@ -283,6 +305,10 @@ namespace snemo {
         electron_max_gamma_max_internal_probability = constants::INVALID_DOUBLE;
         electron_max_gamma_max_external_probability = constants::INVALID_DOUBLE;
         electrons_vertices_probability = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_x = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_y = constants::INVALID_DOUBLE;
+        electrons_vertices_distance_z = constants::INVALID_DOUBLE;
+        electrons_vertex_location = constants::INVALID_DOUBLE;
         electrons_angle = constants::INVALID_DOUBLE;
         electrons_cos_angle = constants::INVALID_DOUBLE;
         electron_Emin_track_length = constants::INVALID_DOUBLE;
@@ -474,7 +500,10 @@ namespace snemo {
             .property ("electron_track_length", &topology_1e::electron_track_length)
             .tag ("ctype", "double")
             .tag ("unit", "mm")
+            .property ("electron_vertex_location", &topology_1e::electron_vertex_location)
+            .tag ("ctype", "double")
             ;
+
           camp::Class::declare< topology_1e1a >("topology_1e1a")
             .tag ("version", 0)
             .constructor0()
@@ -498,10 +527,22 @@ namespace snemo {
             .tag ("unit", "radian")
             .property ("electron_alpha_vertices_probability", &topology_1e1a::electron_alpha_vertices_probability)
             .tag ("ctype", "double")
+            .property ("electron_alpha_vertices_distance_x", &topology_1e1a::electron_alpha_vertices_distance_x)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_alpha_vertices_distance_y", &topology_1e1a::electron_alpha_vertices_distance_y)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_alpha_vertices_distance_z", &topology_1e1a::electron_alpha_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_alpha_vertex_location", &topology_1e1a::electron_alpha_vertex_location)
+            .tag ("ctype", "double")
             .property ("alpha_delayed_time", &topology_1e1a::alpha_delayed_time)
             .tag ("ctype", "double")
             .tag ("unit", "ns")
             ;
+
           camp::Class::declare< topology_2e >("topology_2e")
             .tag ("version", 0)
             .constructor0()
@@ -525,9 +566,14 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electrons_vertices_distance_x", &topology_2e::electrons_vertices_distance_x)
             .tag ("ctype", "double")
+            .tag ("unit", "mm")
             .property ("electrons_vertices_distance_y", &topology_2e::electrons_vertices_distance_y)
             .tag ("ctype", "double")
+            .tag ("unit", "mm")
             .property ("electrons_vertices_distance_z", &topology_2e::electrons_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertex_location", &topology_2e::electrons_vertex_location)
             .tag ("ctype", "double")
             .property ("electrons_angle", &topology_2e::electrons_angle)
             .tag ("ctype", "double")
@@ -541,6 +587,7 @@ namespace snemo {
             .tag ("ctype", "double")
             .tag ("unit", "mm")
             ;
+
           camp::Class::declare< topology_1e1p >("topology_1e1p")
             .tag ("version", 0)
             .constructor0()
@@ -562,6 +609,17 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electron_positron_vertices_probability", &topology_1e1p::electron_positron_vertices_probability)
             .tag ("ctype", "double")
+            .property ("electron_positron_vertices_distance_x", &topology_1e1p::electron_positron_vertices_distance_x)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_positron_vertices_distance_y", &topology_1e1p::electron_positron_vertices_distance_y)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_positron_vertices_distance_z", &topology_1e1p::electron_positron_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electron_positron_vertex_location", &topology_1e1p::electron_positron_vertex_location)
+            .tag ("ctype", "double")
             .property ("electron_positron_angle", &topology_1e1p::electron_positron_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
@@ -574,6 +632,7 @@ namespace snemo {
             .tag ("ctype", "double")
             .tag ("unit", "mm")
             ;
+
           camp::Class::declare< topology_2p >("topology_2p")
             .tag ("version", 0)
             .constructor0()
@@ -595,6 +654,17 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("positrons_vertices_probability", &topology_2p::positrons_vertices_probability)
             .tag ("ctype", "double")
+            .property ("positrons_vertices_distance_x", &topology_2p::positrons_vertices_distance_x)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("positrons_vertices_distance_y", &topology_2p::positrons_vertices_distance_y)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("positrons_vertices_distance_z", &topology_2p::positrons_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("positrons_vertex_location", &topology_2p::positrons_vertex_location)
+            .tag ("ctype", "double")
             .property ("positrons_angle", &topology_2p::positrons_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
@@ -607,6 +677,7 @@ namespace snemo {
             .tag ("ctype", "double")
             .tag ("unit", "mm")
             ;
+
           camp::Class::declare< topology_1e1g >("topology_1e1g")
             .tag ("version", 0)
             .constructor0()
@@ -623,7 +694,10 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electron_gamma_external_probability", &topology_1e1g::electron_gamma_external_probability)
             .tag ("ctype", "double")
+            .property ("electron_vertex_location", &topology_1e1g::electron_vertex_location)
+            .tag ("ctype", "double")
             ;
+
           camp::Class::declare< topology_1e2g >("topology_1e2g")
             .tag ("version", 0)
             .constructor0()
@@ -647,7 +721,10 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electron_gamma_max_external_probability", &topology_1e2g::electron_gamma_max_external_probability)
             .tag ("ctype", "double")
+            .property ("electron_vertex_location", &topology_1e2g::electron_vertex_location)
+            .tag ("ctype", "double")
             ;
+
           camp::Class::declare< topology_1e3g >("topology_1e3g")
             .tag ("version", 0)
             .constructor0()
@@ -678,7 +755,10 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electron_gamma_max_external_probability", &topology_1e3g::electron_gamma_max_external_probability)
             .tag ("ctype", "double")
+            .property ("electron_vertex_location", &topology_1e3g::electron_vertex_location)
+            .tag ("ctype", "double")
             ;
+
           camp::Class::declare< topology_2e1g >("topology_2e1g")
             .tag ("version", 0)
             .constructor0()
@@ -714,6 +794,17 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electrons_vertices_probability", &topology_2e1g::electrons_vertices_probability)
             .tag ("ctype", "double")
+            .property ("electrons_vertices_distance_x", &topology_2e1g::electrons_vertices_distance_x)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertices_distance_y", &topology_2e1g::electrons_vertices_distance_y)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertices_distance_z", &topology_2e1g::electrons_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertex_location", &topology_2e1g::electrons_vertex_location)
+            .tag ("ctype", "double")
             .property ("electrons_angle", &topology_2e1g::electrons_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
@@ -726,6 +817,7 @@ namespace snemo {
             .tag ("ctype", "double")
             .tag ("unit", "mm")
             ;
+
           camp::Class::declare< topology_2e2g >("topology_2e2g")
             .tag ("version", 0)
             .constructor0()
@@ -772,6 +864,17 @@ namespace snemo {
             .tag ("ctype", "double")
             .property ("electrons_vertices_probability", &topology_2e2g::electrons_vertices_probability)
             .tag ("ctype", "double")
+            .property ("electrons_vertices_distance_x", &topology_2e2g::electrons_vertices_distance_x)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertices_distance_y", &topology_2e2g::electrons_vertices_distance_y)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertices_distance_z", &topology_2e2g::electrons_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertex_location", &topology_2e2g::electrons_vertex_location)
+            .tag ("ctype", "double")
             .property ("electrons_angle", &topology_2e2g::electrons_angle)
             .tag ("ctype", "double")
             .tag ("unit", "radian")
@@ -784,6 +887,7 @@ namespace snemo {
             .tag ("ctype", "double")
             .tag ("unit", "mm")
             ;
+
           camp::Class::declare< topology_2e3g >("topology_2e3g")
             .tag ("version", 0)
             .constructor0()
@@ -840,6 +944,17 @@ namespace snemo {
             .property ("electron_max_gamma_max_external_probability", &topology_2e3g::electron_max_gamma_max_external_probability)
             .tag ("ctype", "double")
             .property ("electrons_vertices_probability", &topology_2e3g::electrons_vertices_probability)
+            .tag ("ctype", "double")
+            .property ("electrons_vertices_distance_x", &topology_2e3g::electrons_vertices_distance_x)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertices_distance_y", &topology_2e3g::electrons_vertices_distance_y)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertices_distance_z", &topology_2e3g::electrons_vertices_distance_z)
+            .tag ("ctype", "double")
+            .tag ("unit", "mm")
+            .property ("electrons_vertex_location", &topology_2e3g::electrons_vertex_location)
             .tag ("ctype", "double")
             .property ("electrons_angle", &topology_2e3g::electrons_angle)
             .tag ("ctype", "double")

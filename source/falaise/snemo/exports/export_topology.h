@@ -55,6 +55,7 @@ namespace snemo {
       double electron_energy;
       double electron_angle;
       double electron_track_length;
+      double electron_vertex_location;
     };
 
     struct topology_1e1a : base_topology // maybe make it inherit from 1e topology
@@ -72,7 +73,12 @@ namespace snemo {
       double alpha_track_length;
       double electron_alpha_angle;
       double electron_alpha_vertices_probability;
+      double electron_alpha_vertices_distance_x;
+      double electron_alpha_vertices_distance_y;
+      double electron_alpha_vertices_distance_z;
+      double electron_alpha_vertex_location;
       double alpha_delayed_time;
+      double electron_vertex_location;
     };
 
     struct topology_2e : base_topology
@@ -95,6 +101,7 @@ namespace snemo {
       double electrons_vertices_distance_x;
       double electrons_vertices_distance_y;
       double electrons_vertices_distance_z;
+      double electrons_vertex_location;
 
       double electrons_angle;
       double electrons_cos_angle;
@@ -120,6 +127,10 @@ namespace snemo {
       double electron_positron_external_probability;
 
       double electron_positron_vertices_probability;
+      double electron_positron_vertices_distance_x;
+      double electron_positron_vertices_distance_y;
+      double electron_positron_vertices_distance_z;
+      double electron_positron_vertex_location;
       double electron_positron_angle;
       double electron_positron_cos_angle;
 
@@ -145,6 +156,10 @@ namespace snemo {
       double positrons_external_probability;
 
       double positrons_vertices_probability;
+      double positrons_vertices_distance_x;
+      double positrons_vertices_distance_y;
+      double positrons_vertices_distance_z;
+      double positrons_vertex_location;
       double positrons_angle;
       double positrons_cos_angle;
 
@@ -165,6 +180,7 @@ namespace snemo {
       double electron_gamma_energy_sum;
       double electron_gamma_internal_probability;
       double electron_gamma_external_probability;
+      double electron_vertex_location;
     };
 
     struct topology_1e2g : base_topology
@@ -182,6 +198,7 @@ namespace snemo {
       double electron_gamma_min_external_probability;
       double electron_gamma_max_internal_probability;
       double electron_gamma_max_external_probability;
+      double electron_vertex_location;
     };
 
     struct topology_1e3g : base_topology
@@ -202,6 +219,7 @@ namespace snemo {
       double electron_gamma_mid_external_probability;
       double electron_gamma_max_internal_probability;
       double electron_gamma_max_external_probability;
+      double electron_vertex_location;
 
     };
 
@@ -227,6 +245,10 @@ namespace snemo {
       double electron_max_gamma_external_probability;
 
       double electrons_vertices_probability;
+      double electrons_vertices_distance_x;
+      double electrons_vertices_distance_y;
+      double electrons_vertices_distance_z;
+      double electrons_vertex_location;
       double electrons_angle;
       double electrons_cos_angle;
 
@@ -262,6 +284,10 @@ namespace snemo {
       double electron_max_gamma_max_external_probability;
 
       double electrons_vertices_probability;
+      double electrons_vertices_distance_x;
+      double electrons_vertices_distance_y;
+      double electrons_vertices_distance_z;
+      double electrons_vertex_location;
       double electrons_angle;
       double electrons_cos_angle;
 
@@ -302,6 +328,10 @@ namespace snemo {
       double electron_max_gamma_max_external_probability;
 
       double electrons_vertices_probability;
+      double electrons_vertices_distance_x;
+      double electrons_vertices_distance_y;
+      double electrons_vertices_distance_z;
+      double electrons_vertex_location;
       double electrons_angle;
       double electrons_cos_angle;
 
