@@ -274,6 +274,7 @@ namespace snemo {
       et_.grab_1e_topology().electron_angle = a_1e_pattern.get_electron_angle();
       et_.grab_1e_topology().electron_track_length = a_1e_pattern.get_electron_track_length();
       et_.grab_1e_topology().electron_vertex_location = export_tools::location_to_index.at(a_1e_pattern.get_electron_vertex_location());
+      et_.grab_1e_topology().electron_vertex_position_x = a_1e_pattern.get_electron_vertex_position_x();
 
       return 0;
     }
@@ -306,6 +307,9 @@ namespace snemo {
       et_.grab_1e1a_topology().electron_alpha_vertices_distance_y = a_1e1a_pattern.get_electron_alpha_vertices_distance_y();
       et_.grab_1e1a_topology().electron_alpha_vertices_distance_z = a_1e1a_pattern.get_electron_alpha_vertices_distance_z();
       et_.grab_1e1a_topology().electron_alpha_vertex_location = export_tools::location_to_index.at(a_1e1a_pattern.get_electron_alpha_vertex_location());
+      et_.grab_1e1a_topology().electron_vertex_position_x = a_1e1a_pattern.get_electron_alpha_vertex_position_x();
+      et_.grab_1e1a_topology().electron_vertex_position_y = a_1e1a_pattern.get_electron_alpha_vertex_position_y();
+      et_.grab_1e1a_topology().electron_vertex_position_z = a_1e1a_pattern.get_electron_alpha_vertex_position_z();
       et_.grab_1e1a_topology().alpha_delayed_time = a_1e1a_pattern.get_alpha_delayed_time();
 
       return 0;
@@ -341,6 +345,9 @@ namespace snemo {
       et_.grab_2e_topology().electrons_vertices_distance_y = a_2e_pattern.get_electrons_vertices_distance_y();
       et_.grab_2e_topology().electrons_vertices_distance_z = a_2e_pattern.get_electrons_vertices_distance_z();
       et_.grab_2e_topology().electrons_vertex_location = export_tools::location_to_index.at(a_2e_pattern.get_electrons_vertex_location());
+      et_.grab_2e_topology().electrons_vertex_position_x = a_2e_pattern.get_electrons_vertex_position_x();
+      et_.grab_2e_topology().electrons_vertex_position_y = a_2e_pattern.get_electrons_vertex_position_y();
+      et_.grab_2e_topology().electrons_vertex_position_z = a_2e_pattern.get_electrons_vertex_position_z();
       et_.grab_2e_topology().electrons_angle = a_2e_pattern.get_electrons_angle();
       et_.grab_2e_topology().electrons_cos_angle = std::cos(a_2e_pattern.get_electrons_angle());
 
@@ -396,6 +403,9 @@ namespace snemo {
       et_.grab_1e1p_topology().electron_positron_vertices_distance_y = a_1e1p_pattern.get_electron_positron_vertices_distance_y();
       et_.grab_1e1p_topology().electron_positron_vertices_distance_z = a_1e1p_pattern.get_electron_positron_vertices_distance_z();
       et_.grab_1e1p_topology().electron_positron_vertex_location = export_tools::location_to_index.at(a_1e1p_pattern.get_electron_positron_vertex_location());
+      et_.grab_1e1p_topology().electron_positron_vertex_position_x = a_1e1p_pattern.get_electron_positron_vertex_position_x();
+      et_.grab_1e1p_topology().electron_positron_vertex_position_y = a_1e1p_pattern.get_electron_positron_vertex_position_y();
+      et_.grab_1e1p_topology().electron_positron_vertex_position_z = a_1e1p_pattern.get_electron_positron_vertex_position_z();
       et_.grab_1e1p_topology().electron_positron_angle = a_1e1p_pattern.get_electron_positron_angle();
       et_.grab_1e1p_topology().electron_positron_cos_angle = std::cos(a_1e1p_pattern.get_electron_positron_angle());
       et_.grab_1e1p_topology().electron_track_length = a_1e1p_pattern.get_electron_track_length();
@@ -438,6 +448,9 @@ namespace snemo {
       et_.grab_2p_topology().positrons_vertices_distance_y = a_2p_pattern.get_positrons_vertices_distance_y();
       et_.grab_2p_topology().positrons_vertices_distance_z = a_2p_pattern.get_positrons_vertices_distance_z();
       et_.grab_2p_topology().positrons_vertex_location = export_tools::location_to_index.at(a_2p_pattern.get_positrons_vertex_location());
+      et_.grab_2p_topology().positrons_vertex_position_x = a_2p_pattern.get_positrons_vertex_position_x();
+      et_.grab_2p_topology().positrons_vertex_position_y = a_2p_pattern.get_positrons_vertex_position_y();
+      et_.grab_2p_topology().positrons_vertex_position_z = a_2p_pattern.get_positrons_vertex_position_z();
       et_.grab_2p_topology().positrons_angle = a_2p_pattern.get_positrons_angle();
       et_.grab_2p_topology().positrons_cos_angle = std::cos(a_2p_pattern.get_positrons_angle());
 
@@ -496,6 +509,9 @@ namespace snemo {
       a_1eNg_pattern.fetch_electron_gammas_external_probabilities(external_probabilities);
       et_.grab_1e1g_topology().electron_gamma_external_probability = external_probabilities.at(0).back();
       et_.grab_1e1g_topology().electron_vertex_location = export_tools::location_to_index.at(a_1eNg_pattern.get_electron_vertex_location());
+      et_.grab_1e1g_topology().electron_vertex_position_x = a_1eNg_pattern.get_electron_vertex_position_x();
+      et_.grab_1e1g_topology().electron_vertex_position_y = a_1eNg_pattern.get_electron_vertex_position_y();
+      et_.grab_1e1g_topology().electron_vertex_position_z = a_1eNg_pattern.get_electron_vertex_position_z();
       return 0;
     }
 
@@ -543,6 +559,9 @@ namespace snemo {
       et_.grab_1e2g_topology().electron_gamma_min_external_probability = external_probabilities.at(energy_rank.at(0)).back();
       et_.grab_1e2g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(1)).back();
       et_.grab_1e2g_topology().electron_vertex_location = export_tools::location_to_index.at(a_1eNg_pattern.get_electron_vertex_location());
+      et_.grab_1e2g_topology().electron_vertex_position_x = a_1eNg_pattern.get_electron_vertex_position_x();
+      et_.grab_1e2g_topology().electron_vertex_position_y = a_1eNg_pattern.get_electron_vertex_position_y();
+      et_.grab_1e2g_topology().electron_vertex_position_z = a_1eNg_pattern.get_electron_vertex_position_z();
 
       return 0;
     }
@@ -620,6 +639,9 @@ namespace snemo {
       et_.grab_1e3g_topology().electron_gamma_mid_external_probability = external_probabilities.at(energy_rank.at(1)).back();
       et_.grab_1e3g_topology().electron_gamma_max_external_probability = external_probabilities.at(energy_rank.at(2)).back();
       et_.grab_1e3g_topology().electron_vertex_location = export_tools::location_to_index.at(a_1eNg_pattern.get_electron_vertex_location());
+      et_.grab_1e3g_topology().electron_vertex_position_x = a_1eNg_pattern.get_electron_vertex_position_x();
+      et_.grab_1e3g_topology().electron_vertex_position_y = a_1eNg_pattern.get_electron_vertex_position_y();
+      et_.grab_1e3g_topology().electron_vertex_position_z = a_1eNg_pattern.get_electron_vertex_position_z();
 
       return 0;
     }
@@ -677,6 +699,9 @@ namespace snemo {
       et_.grab_2e1g_topology().electrons_vertices_distance_y = a_2eNg_pattern.get_electrons_vertices_distance_y();
       et_.grab_2e1g_topology().electrons_vertices_distance_z = a_2eNg_pattern.get_electrons_vertices_distance_z();
       et_.grab_2e1g_topology().electrons_vertex_location = export_tools::location_to_index.at(a_2eNg_pattern.get_electrons_vertex_location());
+      et_.grab_2e1g_topology().electrons_vertex_position_x = a_2eNg_pattern.get_electrons_vertex_position_x();
+      et_.grab_2e1g_topology().electrons_vertex_position_y = a_2eNg_pattern.get_electrons_vertex_position_y();
+      et_.grab_2e1g_topology().electrons_vertex_position_z = a_2eNg_pattern.get_electrons_vertex_position_z();
       et_.grab_2e1g_topology().electrons_angle = a_2eNg_pattern.get_electrons_angle();
       et_.grab_2e1g_topology().electrons_cos_angle = std::cos(a_2eNg_pattern.get_electrons_angle());
 
@@ -778,6 +803,9 @@ namespace snemo {
       et_.grab_2e2g_topology().electrons_vertices_distance_y = a_2eNg_pattern.get_electrons_vertices_distance_y();
       et_.grab_2e2g_topology().electrons_vertices_distance_z = a_2eNg_pattern.get_electrons_vertices_distance_z();
       et_.grab_2e2g_topology().electrons_vertex_location = export_tools::location_to_index.at(a_2eNg_pattern.get_electrons_vertex_location());
+      et_.grab_2e2g_topology().electrons_vertex_position_x = a_2eNg_pattern.get_electrons_vertex_position_x();
+      et_.grab_2e2g_topology().electrons_vertex_position_y = a_2eNg_pattern.get_electrons_vertex_position_y();
+      et_.grab_2e2g_topology().electrons_vertex_position_z = a_2eNg_pattern.get_electrons_vertex_position_z();
       et_.grab_2e2g_topology().electrons_angle = a_2eNg_pattern.get_electrons_angle();
       et_.grab_2e2g_topology().electrons_cos_angle = std::cos(a_2eNg_pattern.get_electrons_angle());
 
@@ -910,6 +938,9 @@ namespace snemo {
       et_.grab_2e3g_topology().electrons_vertices_distance_y = a_2eNg_pattern.get_electrons_vertices_distance_y();
       et_.grab_2e3g_topology().electrons_vertices_distance_z = a_2eNg_pattern.get_electrons_vertices_distance_z();
       et_.grab_2e3g_topology().electrons_vertex_location = export_tools::location_to_index.at(a_2eNg_pattern.get_electrons_vertex_location());
+      et_.grab_2e3g_topology().electrons_vertex_position_x = a_2eNg_pattern.get_electrons_vertex_position_x();
+      et_.grab_2e3g_topology().electrons_vertex_position_y = a_2eNg_pattern.get_electrons_vertex_position_y();
+      et_.grab_2e3g_topology().electrons_vertex_position_z = a_2eNg_pattern.get_electrons_vertex_position_z();
       et_.grab_2e3g_topology().electrons_angle = a_2eNg_pattern.get_electrons_angle();
       et_.grab_2e3g_topology().electrons_cos_angle = std::cos(a_2eNg_pattern.get_electrons_angle());
 
