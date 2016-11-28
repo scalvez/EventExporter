@@ -44,6 +44,14 @@ namespace snemo {
       base_topology ();
     };
 
+    struct event_header : base_topology
+    {
+    public:
+      void reset ();
+      event_header ();
+      double event_number;
+    };
+
     struct topology_1e : base_topology
     {
     public:
@@ -387,6 +395,10 @@ namespace snemo {
                           const std::string & title_ = "",
                           const std::string & indent_ = "") const;
 
+      const event_header & get_event_header () const;
+
+      event_header & grab_event_header ();
+
       const topology_1e & get_1e_topology () const;
 
       topology_1e & grab_1e_topology ();
@@ -433,7 +445,7 @@ namespace snemo {
 
     public:
 
-      // Topology 2e data :
+      snemo::exports::event_header _event_header_;
       snemo::exports::topology_1e _topology_1e_;
       snemo::exports::topology_1e1a _topology_1e1a_;
       snemo::exports::topology_2e _topology_2e_;
@@ -452,6 +464,7 @@ namespace snemo {
 
 } // end of namespace snemo
 
+CAMP_TYPE (snemo::exports::event_header);
 CAMP_TYPE (snemo::exports::topology_1e);
 CAMP_TYPE (snemo::exports::topology_1e1a);
 CAMP_TYPE (snemo::exports::topology_2e);

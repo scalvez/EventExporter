@@ -42,6 +42,20 @@ namespace snemo {
           _branch_manager_.add_topic(i->first, i->second);
         }
 
+      // EXPORT_EVENT_HEADER :
+      if (1)
+        {
+          std::string bank_description;
+          int32_t bank_version;
+          bank_description = "event_header";
+          bank_export_version<event_header>(bank_version);
+          _branch_manager_.init_bank_from_camp ("eh",
+                                                topology_exporter::EXPORT_EVENT_HEADER,
+                                                bank_version,
+                                                bank_description,
+                                                branch_entry_type::SCALAR_DATA);
+        }
+
       // EXPORT_TOPOLOGY_1E :
       if (_store_bits_ & topology_exporter::EXPORT_TOPOLOGY_1E)
         {

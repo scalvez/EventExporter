@@ -11,6 +11,7 @@
 #include <falaise/snemo/exports/base_data_bank_exporter.h>
 
 #include <falaise/snemo/datamodels/topology_data.h>
+#include <falaise/snemo/datamodels/event_header.h>
 #include <falaise/snemo/datamodels/topology_1e_pattern.h>
 #include <falaise/snemo/datamodels/topology_1e1a_pattern.h>
 #include <falaise/snemo/datamodels/topology_2e_pattern.h>
@@ -50,11 +51,14 @@ namespace snemo {
     {
       this->base_data_bank_exporter::initialize(setup_);
 
+      if (setup_.has_flag ("export.event_header"))
+        {
+          this->base_data_bank_exporter::set_exported (se::topology_exporter::EXPORT_EVENT_HEADER);
+        }
       if (setup_.has_flag ("export.topology_1e"))
         {
           this->base_data_bank_exporter::set_exported (se::topology_exporter::EXPORT_TOPOLOGY_1E);
         }
-
       if (setup_.has_flag ("export.topology_1e1a"))
         {
           this->base_data_bank_exporter::set_exported (se::topology_exporter::EXPORT_TOPOLOGY_1E1A);
@@ -127,17 +131,18 @@ namespace snemo {
     //static
     std::string topology_exporter::get_export_bit_label (unsigned int bit_)
     {
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E)   return "topology_1e";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E1A) return "topology_1e1a";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E)   return "topology_2e";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E1P) return "topology_1e1p";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2P)   return "topology_2p";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E1G) return "topology_1e1g";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E2G) return "topology_1e2g";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E3G) return "topology_1e3g";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E1G) return "topology_2e1g";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E2G) return "topology_2e2g";
-      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E3G) return "topology_2e3g";
+      if (bit_ == topology_exporter::EXPORT_EVENT_HEADER)  return "event_header";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E)    return "topology_1e";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E1A)  return "topology_1e1a";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E)    return "topology_2e";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E1P)  return "topology_1e1p";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2P)    return "topology_2p";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E1G)  return "topology_1e1g";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E2G)  return "topology_1e2g";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_1E3G)  return "topology_1e3g";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E1G)  return "topology_2e1g";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E2G)  return "topology_2e2g";
+      if (bit_ == topology_exporter::EXPORT_TOPOLOGY_2E3G)  return "topology_2e3g";
       return "";
     }
 
@@ -184,6 +189,9 @@ namespace snemo {
       base_data_bank_exporter::run();
 
       et_.clear_data ();
+
+      if (base_data_bank_exporter::is_exported (se::topology_exporter::EXPORT_EVENT_HEADER))
+        _export_event_header(er_,et_);
 
       //twice the work to get the TD bank
 
@@ -250,6 +258,21 @@ namespace snemo {
       }
 
       // et_.print (std::clog, "Export topology", "DEVEL: ");
+      return 0;
+    }
+
+    int topology_exporter::_export_event_header (const datatools::things & er_,
+                                                 se::export_topology & et_)
+    {
+      if (! er__.has("EH")) {
+        DT_THROW_IF(abort_at_missing_input, std::logic_error, "Missing Event Header bank !");
+        return 1;
+      }
+
+      const snemo::datamodel::event_header & EH = er_.get<snemo::datamodel::event_header>("EH");
+
+      et_.grab_event_header().event_number = EH.get_id().get_event_number();
+
       return 0;
     }
 

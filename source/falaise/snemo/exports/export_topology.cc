@@ -17,6 +17,18 @@ namespace snemo {
         return;
       }
 
+      event_header::event_header ()
+      {
+        reset();
+        return;
+      }
+
+      void event_header::reset ()
+      {
+        event_number = constants::INVALID_DOUBLE;
+        return;
+      }
+
       topology_1e::topology_1e ()
       {
         reset();
@@ -368,6 +380,7 @@ namespace snemo {
 
       void export_topology::clear_data ()
       {
+       _event_header_.reset ();
        _topology_1e_.reset ();
        _topology_1e1a_.reset ();
        _topology_2e_.reset ();
@@ -395,6 +408,16 @@ namespace snemo {
              << std::endl;
 
         return;
+      }
+
+      const event_header & export_topology::get_event_header () const
+      {
+        return _event_header_;
+      }
+
+      event_header & export_topology::grab_event_header ()
+      {
+        return _event_header_;
       }
 
       const topology_1e & export_topology::get_1e_topology () const
@@ -512,6 +535,12 @@ namespace snemo {
         std::clog << "NOTICE: export_topology::implement_introspection: Entering...\n";
 
         try{
+          camp::Class::declare< event_header >("event_header")
+            .constructor0()
+            .property ("event_number", &event_header::event_number)
+            .tag ("ctype", "double")
+            ;
+
           camp::Class::declare< topology_1e >("topology_1e")
             .tag ("version", 0)
             .constructor0()
@@ -1064,7 +1093,7 @@ namespace snemo {
           camp::Class::declare< export_topology >("export_topology")
             .tag ("version", 0)
             .constructor0()
-            // Topology 2e :
+            .property ("eh", &export_topology::_event_header_)
             .property ("1e", &export_topology::_topology_1e_)
             .property ("1e1a", &export_topology::_topology_1e1a_)
             .property ("2e", &export_topology::_topology_2e_)

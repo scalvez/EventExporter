@@ -65,20 +65,22 @@ namespace snemo {
           {
             NO_EXPORT = 0,
             // Needs 'Topology 2e' :
-            EXPORT_TOPOLOGY_1E           = datatools::bit_mask::bit00,
-            EXPORT_TOPOLOGY_1E1A         = datatools::bit_mask::bit01,
-            EXPORT_TOPOLOGY_2E           = datatools::bit_mask::bit02,
-            EXPORT_TOPOLOGY_1E1P         = datatools::bit_mask::bit03,
-            EXPORT_TOPOLOGY_2P           = datatools::bit_mask::bit04,
-            EXPORT_TOPOLOGY_1E1G         = datatools::bit_mask::bit05,
-            EXPORT_TOPOLOGY_1E2G         = datatools::bit_mask::bit06,
-            EXPORT_TOPOLOGY_1E3G         = datatools::bit_mask::bit07,
-            EXPORT_TOPOLOGY_2E1G         = datatools::bit_mask::bit08,
-            EXPORT_TOPOLOGY_2E2G         = datatools::bit_mask::bit09,
-            EXPORT_TOPOLOGY_2E3G         = datatools::bit_mask::bit10,
+            EXPORT_EVENT_HEADER           = datatools::bit_mask::bit00,
+            EXPORT_TOPOLOGY_1E            = datatools::bit_mask::bit01,
+            EXPORT_TOPOLOGY_1E1A          = datatools::bit_mask::bit02,
+            EXPORT_TOPOLOGY_2E            = datatools::bit_mask::bit03,
+            EXPORT_TOPOLOGY_1E1P          = datatools::bit_mask::bit04,
+            EXPORT_TOPOLOGY_2P            = datatools::bit_mask::bit05,
+            EXPORT_TOPOLOGY_1E1G          = datatools::bit_mask::bit06,
+            EXPORT_TOPOLOGY_1E2G          = datatools::bit_mask::bit07,
+            EXPORT_TOPOLOGY_1E3G          = datatools::bit_mask::bit08,
+            EXPORT_TOPOLOGY_2E1G          = datatools::bit_mask::bit09,
+            EXPORT_TOPOLOGY_2E2G          = datatools::bit_mask::bit10,
+            EXPORT_TOPOLOGY_2E3G          = datatools::bit_mask::bit11,
 
             EXPORT_ALL =
-            EXPORT_TOPOLOGY_1E
+            EXPORT_EVENT_HEADER
+            | EXPORT_TOPOLOGY_1E
             | EXPORT_TOPOLOGY_1E1A
             | EXPORT_TOPOLOGY_2E
             | EXPORT_TOPOLOGY_1E1P
@@ -113,6 +115,9 @@ namespace snemo {
         // void _set_default_bank_labels ();
 
         void _init_defaults ();
+
+        int _export_event_header (const datatools::things &,
+                                  snemo::exports::export_topology &);
 
         int _export_topology_1e (const datatools::things &,
                                  snemo::exports::export_topology &);
