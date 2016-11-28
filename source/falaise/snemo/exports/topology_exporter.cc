@@ -296,6 +296,8 @@ namespace snemo {
       et_.grab_1e_topology().electron_track_length = a_1e_pattern.get_electron_track_length();
       et_.grab_1e_topology().electron_vertex_location = export_tools::location_to_index.at(a_1e_pattern.get_electron_vertex_location());
       et_.grab_1e_topology().electron_vertex_position_x = a_1e_pattern.get_electron_vertex_position_x();
+      et_.grab_1e_topology().electron_vertex_position_y = a_1e_pattern.get_electron_vertex_position_y();
+      et_.grab_1e_topology().electron_vertex_position_z = a_1e_pattern.get_electron_vertex_position_z();
 
       return 0;
     }
