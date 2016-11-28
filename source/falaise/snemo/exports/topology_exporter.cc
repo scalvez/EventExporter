@@ -264,10 +264,8 @@ namespace snemo {
     int topology_exporter::_export_event_header (const datatools::things & er_,
                                                  se::export_topology & et_)
     {
-      if (! er__.has("EH")) {
-        DT_THROW_IF(abort_at_missing_input, std::logic_error, "Missing Event Header bank !");
-        return 1;
-      }
+
+      DT_THROW_IF (! er_.has("EH"), std::logic_error, "Missing topology data pattern !");
 
       const snemo::datamodel::event_header & EH = er_.get<snemo::datamodel::event_header>("EH");
 
