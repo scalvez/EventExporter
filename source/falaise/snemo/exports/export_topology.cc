@@ -187,7 +187,10 @@ namespace snemo {
         electron_gamma_energy_sum = constants::INVALID_DOUBLE;
         electron_gamma_internal_probability = constants::INVALID_DOUBLE;
         electron_gamma_external_probability = constants::INVALID_DOUBLE;
-
+        electron_vertex_location = constants::INVALID_DOUBLE;
+        electron_vertex_position_x = constants::INVALID_DOUBLE;
+        electron_vertex_position_y = constants::INVALID_DOUBLE;
+        electron_vertex_position_z = constants::INVALID_DOUBLE;
         return;
       }
 
@@ -207,6 +210,10 @@ namespace snemo {
         electron_gamma_min_external_probability = constants::INVALID_DOUBLE;
         electron_gamma_max_internal_probability = constants::INVALID_DOUBLE;
         electron_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        electron_vertex_location = constants::INVALID_DOUBLE;
+        electron_vertex_position_x = constants::INVALID_DOUBLE;
+        electron_vertex_position_y = constants::INVALID_DOUBLE;
+        electron_vertex_position_z = constants::INVALID_DOUBLE;
         return;
       }
 
@@ -229,6 +236,10 @@ namespace snemo {
         electron_gamma_mid_external_probability = constants::INVALID_DOUBLE;
         electron_gamma_max_internal_probability = constants::INVALID_DOUBLE;
         electron_gamma_max_external_probability = constants::INVALID_DOUBLE;
+        electron_vertex_location = constants::INVALID_DOUBLE;
+        electron_vertex_position_x = constants::INVALID_DOUBLE;
+        electron_vertex_position_y = constants::INVALID_DOUBLE;
+        electron_vertex_position_z = constants::INVALID_DOUBLE;
         return;
       }
 
